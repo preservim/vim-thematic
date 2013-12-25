@@ -1,0 +1,163 @@
+*themata.txt*  Theme manager for VIM
+
+Author:  Reed Esau <http://esau.org/>
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                    *themata* *:themata*
+
+themata lets you quickly find, substitute, and abbreviate several variations
+of a word at once.  By default, three case variants (foo, Foo, and FOO) are
+operated on by every command.
+
+Two commands are provided.  :themata is the most general interface.
+:Subvert provides an alternative, more concise syntax for searching and
+substituting.
+>
+	:themata [options] {abbreviation} {replacement}
+	:themata -delete [options] {abbreviation}
+
+	:themata -search [options] {pattern}
+	:Subvert/{pattern}[/flags]
+	:themata!-search [options] {pattern}
+	:Subvert?{pattern}[?flags]
+
+	:themata -search [options] {pattern} {grep-arguments}
+	:Subvert /{pattern}/[flags] {grep-options}
+	:themata!-search [options] {pattern} {grep-arguments}
+	:Subvert!/{pattern}/[flags] {grep-options}
+
+	:[range]themata -substitute [options] {pattern} {replacement}
+	:[range]Subvert/{pattern}/{replacement}[/flags]
+<
+						*:S*
+In addition to the :Subvert command, a :S synonym is provided if not
+already defined.  This will be used in examples below.
+
+PATTERNS					*themata-patterns*
+
+Patterns can include brace pairs that contain comma separated alternatives:
+
+  box{,es} => box, boxes, Box, Boxes, BOX, BOXES
+
+For commands with a replacement, corresponding brace pairs are used in both
+halves.  If the replacement should be identical to the pattern, an empty
+brace pair may be used.  If fewer replacements are given than were given in
+the pattern, they are looped.  That is, {a,b} on the replacement side is the
+same as {a,b,a,b,a,b,...} repeated indefinitely.
+
+The following replaces several different misspellings of "necessary":
+>
+	:%S/{,un}nec{ce,ces,e}sar{y,ily}/{}nec{es}sar{}/g
+<
+ABBREVIATING					*themata-abbrev*
+
+By default :themata creates abbreviations, which replace words automatically
+as you type.  This is good for words you frequently misspell, or as
+shortcuts for longer words.  Since these are just Vim abbreviations, only
+whole words will match.
+>
+	:themata anomol{y,ies} anomal{}
+	:themata {,in}consistant{,ly} {}consistent{}
+	:themata Tqbf The quick, brown fox jumps over the lazy dog
+<
+Accepts the following options:
+
+ -buffer: buffer local
+ -cmdline: work in command line in addition to insert mode
+
+A good place to define abbreviations is "after/plugin/themata.vim",
+relative to ~\vimfiles on Windows and ~/.vim everywhere else.
+
+With a bang (:themata!) the abbreviation is also appended to the file in
+g:themata_save_file.  The default is "after/plugin/themata.vim", relative
+to the install directory.
+
+Abbreviations can be removed with :themata -delete:
+>
+	themata -delete -buffer -cmdline anomol{y,ies}
+<
+SEARCHING					*themata-search*
+
+The -search command does a search in a manner similar to / key.
+search.  After searching, you can use |n| and |N| as you would with a normal
+search.
+
+The following will search for box, Box, and BOX:
+>
+	:themata -search box
+<
+When given a single word to operate on, :Subvert defaults to doing a
+search as well:
+>
+	:S/box/
+<
+This one searches for box, boxes, boxed, boxing, Box, Boxes, Boxed, Boxing,
+BOX, BOXES, BOXED, and BOXING:
+>
+	:S/box{,es,ed,ing}/
+<
+The following syntaxes search in reverse.
+>
+	:themata! -search box
+	:S?box?
+<
+Flags can be given with the -flags= option to :themata, or by appending them
+after the separator to :Subvert. The flags trigger the following behaviors:
+
+ I: Disable case variations (box, Box, BOX)
+ v: Match inside variable names (match my_box, myBox, but not mybox)
+ w: Match whole words (like surrounding with \< and \>)
+
+A |search-offset| may follow the flags.
+>
+	:themata -search -flags=avs+1 box
+	:S?box{,es,ed,ing}?we
+<
+GREPPING					*themata-grep*
+
+Grepping works similar to searching, and is invoked when additional options
+are given.  These options are passed directly to the :grep command.
+>
+	:themata -search box{,es}
+	:S /box{,es}/ *
+	:S /box/aw *.txt *.html
+<
+The slash delimiters must both be present if used with :Subvert.  They may
+both be omitted if no flags are used.
+
+Both an external grepprg and vimgrep (via grepprg=internal) are supported.
+With an external grep, the "v" flag behaves less intelligently, due to the
+lack of look ahead and look behind support in grep regexps.
+
+SUBSTITUTING					*themata-substitute*
+
+Giving a range switches :Subvert into substitute mode.  This command will
+change box -> bag, boxes -> bags, Box -> Bag, Boxes -> Bags, BOX -> BAG,
+BOXES -> BAGS across the entire document:
+>
+	:%themata -substitute -flags=g box{,es} bag{,s}
+	:%S/box{,es}/bag{,s}/g
+<
+The "c", "e", "g", and "n" flags can be used from the substitute command
+|:s_flags|, along with the "a", "I", "v", and "w" flags from searching.
+
+COERCION					*themata-coercion* *cr*
+
+themata's case mutating algorithms can be applied to the word under the cursor
+using the cr mapping (mnemonic: CoeRce) followed by one of the following
+characters:
+
+  c: camelCase
+  m: MixedCase
+  _: snake_case
+  s: snake_case
+  u: SNAKE_UPPERCASE
+  U: SNAKE_UPPERCASE
+  -: dash-case (not reversible)
+
+For example, cru on a lowercase word is a slightly easier to type equivalent
+to gUiw.
+
+ vim:tw=78:ts=8:ft=help:norl:
