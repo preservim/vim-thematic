@@ -1,5 +1,5 @@
 " =============================================================================
-" File:        plugin/themata.vim
+" File:        plugin/thematic.vim
 " Description: Theme Manager for the Vim text editor
 " Maintainer:  Reed Esau <github.com/reedes>
 " License:     This program is free software. It comes without any warranty,
@@ -23,18 +23,18 @@
 "    endif
 "endfor
 
-if exists('g:loaded_themata') || &cp | finish | endif
-let g:loaded_themata = 1
+if exists('g:loaded_thematic') || &cp | finish | endif
+let g:loaded_thematic = 1
 
 " Save 'cpoptions' and set Vim default to enable line continuations.
 let s:save_cpo = &cpo
 set cpo&vim
 
-let g:themata#theme_name = ''
+let g:thematic#theme_name = ''
 
 " Preserve original settings {{{
 
-let g:themata#original = {
+let g:thematic#original = {
   \ 'laststatus': &laststatus,
   \ 'ruler': &ruler,
   \ }
@@ -48,14 +48,14 @@ let g:themata#original = {
 if has('fullscreen')
   let l_fuopts = split(&fuoptions, ',')
   if index(l_fuopts, 'maxvert') != -1
-    let g:themata#original.maxvert = 1
+    let g:thematic#original.maxvert = 1
     " NOTE removing maxvert results in a screen redraw problem
     "      if Ctrl+Command+F hit before switching themes,
     "      so we'll remove it here.
     "set fuoptions-=maxvert
   endif
   if index(l_fuopts, 'maxhorz') != -1
-    let g:themata#original.maxhorz = 1
+    let g:thematic#original.maxhorz = 1
     set fuoptions-=maxhorz
   endif
   unlet l_fuopts
@@ -64,11 +64,11 @@ endif
 " }}}
 
 " Defaults {{{
-if !exists('g:themata#defaults')
-  let g:themata#defaults = {}
+if !exists('g:thematic#defaults')
+  let g:thematic#defaults = {}
 endif
-if !exists('g:themata#themes')
-  let g:themata#themes = {
+if !exists('g:thematic#themes')
+  let g:thematic#themes = {
   \ 'blue'       : { 'sign-column-color-fix': 1,
   \                  'fold-column-color-mute': 1,
   \                },
@@ -85,14 +85,14 @@ endif
 
 " Commands {{{
 
-command -nargs=0 ThematicNarrow call themata#adjustColumns(-5)
-command -nargs=0 ThematicWiden  call themata#adjustColumns(5)
+command -nargs=0 ThematicNarrow call thematic#adjustColumns(-5)
+command -nargs=0 ThematicWiden  call thematic#adjustColumns(5)
 
-command -nargs=0 ThematicFirst    call themata#load('#first')
-command -nargs=0 ThematicNext     call themata#load('#next')
-command -nargs=0 ThematicPrevious call themata#load('#previous')
-command -nargs=0 ThematicRandom   call themata#load('#random')
-command -nargs=0 ThematicOriginal call themata#load('#original')
+command -nargs=0 ThematicFirst    call thematic#load('#first')
+command -nargs=0 ThematicNext     call thematic#load('#next')
+command -nargs=0 ThematicPrevious call thematic#load('#previous')
+command -nargs=0 ThematicRandom   call thematic#load('#random')
+command -nargs=0 ThematicOriginal call thematic#load('#original')
 "command! -nargs=1 MyCommand call s:MyFunc(<f-args>)
 
 " }}}
