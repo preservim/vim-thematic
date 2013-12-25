@@ -1,11 +1,11 @@
-" Autoload portion of plugin/themata.vim.
+" Autoload portion of plugin/thematic.vim.
 "
 " Credit for some font regex/functions: https://github.com/drmikehenry/vim-fontsize
 
-if exists("autoloaded_themata")
+if exists("autoloaded_thematic")
   finish
 endif
-let autoloaded_themata = 1
+let autoloaded_thematic = 1
 
 " # FONT REGEXES {{{1
 " Regex values for each platform split guifont into three
@@ -38,8 +38,8 @@ endif
 " # FUNCTIONS {{{1
 " # Function: s:encodeFont {{{2
 function! s:encodeFont(font)
-  if has("iconv") && exists("g:themata#encoding")
-    let encodedFont = iconv(a:font, &enc, g:themata#encoding)
+  if has("iconv") && exists("g:thematic#encoding")
+    let encodedFont = iconv(a:font, &enc, g:thematic#encoding)
   else
     let encodedFont = a:font
   endif
@@ -48,8 +48,8 @@ endfunction
 " }}}2
 " # Function: s:decodeFont {{{2
 function! s:decodeFont(font)
-  if has("iconv") && exists("g:themata#encoding")
-    let decodedFont = iconv(a:font, g:themata#encoding, &enc)
+  if has("iconv") && exists("g:thematic#encoding")
+    let decodedFont = iconv(a:font, g:thematic#encoding, &enc)
   else
     let decodedFont = a:font
   endif
@@ -81,7 +81,7 @@ endfunction
 " }}}2
 " # Function: s:getThemeName {{{2
 function! s:getThemeName(mode)
-  let l:avail_names = sort(keys(g:themata#themes))
+  let l:avail_names = sort(keys(g:thematic#themes))
   let l:avail_count = len(l:avail_names)
   let l:new_n = -1
   if a:mode == '#first'
@@ -93,7 +93,7 @@ function! s:getThemeName(mode)
           \ str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
           \ % l:avail_count
   elseif a:mode == '#next' || a:mode == '#previous'
-    let l:current_n = index(l:avail_names, g:themata#theme_name)
+    let l:current_n = index(l:avail_names, g:thematic#theme_name)
     if a:mode == '#next'
       if l:current_n == -1 || l:current_n == l:avail_count - 1
         let l:new_n = 0
@@ -120,10 +120,10 @@ endfunction
 " Obtain value for theme property, falling back to either user-specified
 " defaults or the original value.
 function! s:getThemeValue(th, key_name, ultimate_fallback_value)
-  if has_key(g:themata#defaults, a:key_name)
-    let l:fallback_value = get(g:themata#defaults, a:key_name)
-  elseif has_key(g:themata#original, a:key_name)
-    let l:fallback_value = get(g:themata#original, a:key_name)
+  if has_key(g:thematic#defaults, a:key_name)
+    let l:fallback_value = get(g:thematic#defaults, a:key_name)
+  elseif has_key(g:thematic#original, a:key_name)
+    let l:fallback_value = get(g:thematic#original, a:key_name)
   else
     let l:fallback_value = a:ultimate_fallback_value
   endif
@@ -149,8 +149,8 @@ function! s:airline(th)
   "https://github.com/bling/vim-airline/wiki/Screenshots
   if exists(':AirlineRefresh')
     " attempt to preserve original airline theme if not yet set
-    if !has_key(g:themata#original, 'airline-theme') && exists('g:airline_theme')
-      let g:themata#original['airline-theme'] = g:airline_theme
+    if !has_key(g:thematic#original, 'airline-theme') && exists('g:airline_theme')
+      let g:thematic#original['airline-theme'] = g:airline_theme
     endif
 
     let l:al = s:getThemeValue(a:th, 'airline-theme', '')
@@ -229,16 +229,16 @@ endfunction
 " # Function: s:guiFont {{{2
 function! s:guiFont(th)
   " attempt to preserve original font if not yet set
-  if !has_key(g:themata#original, 'typeface')
+  if !has_key(g:thematic#original, 'typeface')
     let l:typeface = s:getTypeface(&guifont, '')
     if l:typeface != ''
-      let g:themata#original['typeface'] = l:typeface
+      let g:thematic#original['typeface'] = l:typeface
     endif
   endif
-  if !has_key(g:themata#original, 'font-size')
+  if !has_key(g:thematic#original, 'font-size')
     let l:size = s:getSize(&guifont, 0)
     if l:size != 0
-      let g:themata#original['font-size'] = l:size
+      let g:thematic#original['font-size'] = l:size
     endif
   endif
 
@@ -320,27 +320,27 @@ function! s:setColumnsAndLines(th)
 endfunction
 " }}}2
 " # Function: load {{{2
-function! themata#load(mode)
-  if len(g:themata#themes) == 0
+function! thematic#load(mode)
+  if len(g:thematic#themes) == 0
     echohl WarningMsg | echo 'No themes found.' | echohl NONE
     finish
   endif
 
   " attempt to preserve original colorscheme and its background
-  if !has_key(g:themata#original, 'colorscheme') && exists('g:colors_name')
-    let g:themata#original.colorscheme = g:colors_name
-    let g:themata#original.background = &background
+  if !has_key(g:thematic#original, 'colorscheme') && exists('g:colors_name')
+    let g:thematic#original.colorscheme = g:colors_name
+    let g:thematic#original.background = &background
   endif
 
   " Resolve theme_name from mode, where mode can be #first, #last, #next,
-  " #previous, #random, a colorscheme, a key in g:themata#themes, or the
+  " #previous, #random, a colorscheme, a key in g:thematic#themes, or the
   " user's original settings.
   if a:mode == '#original'
     let l:theme_name = ''
-    let l:th = g:themata#original
+    let l:th = g:thematic#original
   else
     let l:theme_name = s:getThemeName(a:mode)
-    let l:th = get(g:themata#themes, l:theme_name, {})
+    let l:th = get(g:thematic#themes, l:theme_name, {})
   endif
 
   " ------ Set colorscheme and background ------ {{{3
@@ -351,8 +351,8 @@ function! themata#load(mode)
     execute 'colorscheme ' . l:cs
   catch /E185:/
     " no colorscheme matching the theme name, so fall back to original, if any
-    if has_key(g:themata#original, 'colorscheme')
-      let l:cs = g:themata#original.colorscheme
+    if has_key(g:thematic#original, 'colorscheme')
+      let l:cs = g:thematic#original.colorscheme
       execute 'colorscheme ' . l:cs
     endif
   endtry
@@ -441,7 +441,7 @@ function! themata#load(mode)
 
   " }}}3
 
-  let g:themata#theme_name = l:theme_name
+  let g:thematic#theme_name = l:theme_name
 
   if s:getThemeValue(l:th, 'force-redraw', 0)
     redraw!
@@ -449,7 +449,7 @@ function! themata#load(mode)
 endfunction
 " }}}2
 " # Function: adjustColumns {{{2
-function! themata#adjustColumns(delta)
+function! thematic#adjustColumns(delta)
   let l:nu_cols = &columns + a:delta
   silent execute "set columns=" . l:nu_cols
 endfunction

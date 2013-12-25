@@ -1,41 +1,41 @@
-*themata.txt*  Theme manager for VIM
+*thematic.txt*  Theme manager for VIM
 
 Author:  Reed Esau <http://esau.org/>
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
 
-INTRODUCTION                                    *themata* *:themata*
+INTRODUCTION                                    *thematic* *:thematic*
 
-themata lets you quickly find, substitute, and abbreviate several variations
+thematic lets you quickly find, substitute, and abbreviate several variations
 of a word at once.  By default, three case variants (foo, Foo, and FOO) are
 operated on by every command.
 
-Two commands are provided.  :themata is the most general interface.
+Two commands are provided.  :thematic is the most general interface.
 :Subvert provides an alternative, more concise syntax for searching and
 substituting.
 >
-	:themata [options] {abbreviation} {replacement}
-	:themata -delete [options] {abbreviation}
+	:thematic [options] {abbreviation} {replacement}
+	:thematic -delete [options] {abbreviation}
 
-	:themata -search [options] {pattern}
+	:thematic -search [options] {pattern}
 	:Subvert/{pattern}[/flags]
-	:themata!-search [options] {pattern}
+	:thematic!-search [options] {pattern}
 	:Subvert?{pattern}[?flags]
 
-	:themata -search [options] {pattern} {grep-arguments}
+	:thematic -search [options] {pattern} {grep-arguments}
 	:Subvert /{pattern}/[flags] {grep-options}
-	:themata!-search [options] {pattern} {grep-arguments}
+	:thematic!-search [options] {pattern} {grep-arguments}
 	:Subvert!/{pattern}/[flags] {grep-options}
 
-	:[range]themata -substitute [options] {pattern} {replacement}
+	:[range]thematic -substitute [options] {pattern} {replacement}
 	:[range]Subvert/{pattern}/{replacement}[/flags]
 <
 						*:S*
 In addition to the :Subvert command, a :S synonym is provided if not
 already defined.  This will be used in examples below.
 
-PATTERNS					*themata-patterns*
+PATTERNS					*thematic-patterns*
 
 Patterns can include brace pairs that contain comma separated alternatives:
 
@@ -51,34 +51,34 @@ The following replaces several different misspellings of "necessary":
 >
 	:%S/{,un}nec{ce,ces,e}sar{y,ily}/{}nec{es}sar{}/g
 <
-ABBREVIATING					*themata-abbrev*
+ABBREVIATING					*thematic-abbrev*
 
-By default :themata creates abbreviations, which replace words automatically
+By default :thematic creates abbreviations, which replace words automatically
 as you type.  This is good for words you frequently misspell, or as
 shortcuts for longer words.  Since these are just Vim abbreviations, only
 whole words will match.
 >
-	:themata anomol{y,ies} anomal{}
-	:themata {,in}consistant{,ly} {}consistent{}
-	:themata Tqbf The quick, brown fox jumps over the lazy dog
+	:thematic anomol{y,ies} anomal{}
+	:thematic {,in}consistant{,ly} {}consistent{}
+	:thematic Tqbf The quick, brown fox jumps over the lazy dog
 <
 Accepts the following options:
 
  -buffer: buffer local
  -cmdline: work in command line in addition to insert mode
 
-A good place to define abbreviations is "after/plugin/themata.vim",
+A good place to define abbreviations is "after/plugin/thematic.vim",
 relative to ~\vimfiles on Windows and ~/.vim everywhere else.
 
-With a bang (:themata!) the abbreviation is also appended to the file in
-g:themata_save_file.  The default is "after/plugin/themata.vim", relative
+With a bang (:thematic!) the abbreviation is also appended to the file in
+g:thematic_save_file.  The default is "after/plugin/thematic.vim", relative
 to the install directory.
 
-Abbreviations can be removed with :themata -delete:
+Abbreviations can be removed with :thematic -delete:
 >
-	themata -delete -buffer -cmdline anomol{y,ies}
+	thematic -delete -buffer -cmdline anomol{y,ies}
 <
-SEARCHING					*themata-search*
+SEARCHING					*thematic-search*
 
 The -search command does a search in a manner similar to / key.
 search.  After searching, you can use |n| and |N| as you would with a normal
@@ -86,7 +86,7 @@ search.
 
 The following will search for box, Box, and BOX:
 >
-	:themata -search box
+	:thematic -search box
 <
 When given a single word to operate on, :Subvert defaults to doing a
 search as well:
@@ -100,10 +100,10 @@ BOX, BOXES, BOXED, and BOXING:
 <
 The following syntaxes search in reverse.
 >
-	:themata! -search box
+	:thematic! -search box
 	:S?box?
 <
-Flags can be given with the -flags= option to :themata, or by appending them
+Flags can be given with the -flags= option to :thematic, or by appending them
 after the separator to :Subvert. The flags trigger the following behaviors:
 
  I: Disable case variations (box, Box, BOX)
@@ -112,15 +112,15 @@ after the separator to :Subvert. The flags trigger the following behaviors:
 
 A |search-offset| may follow the flags.
 >
-	:themata -search -flags=avs+1 box
+	:thematic -search -flags=avs+1 box
 	:S?box{,es,ed,ing}?we
 <
-GREPPING					*themata-grep*
+GREPPING					*thematic-grep*
 
 Grepping works similar to searching, and is invoked when additional options
 are given.  These options are passed directly to the :grep command.
 >
-	:themata -search box{,es}
+	:thematic -search box{,es}
 	:S /box{,es}/ *
 	:S /box/aw *.txt *.html
 <
@@ -131,21 +131,21 @@ Both an external grepprg and vimgrep (via grepprg=internal) are supported.
 With an external grep, the "v" flag behaves less intelligently, due to the
 lack of look ahead and look behind support in grep regexps.
 
-SUBSTITUTING					*themata-substitute*
+SUBSTITUTING					*thematic-substitute*
 
 Giving a range switches :Subvert into substitute mode.  This command will
 change box -> bag, boxes -> bags, Box -> Bag, Boxes -> Bags, BOX -> BAG,
 BOXES -> BAGS across the entire document:
 >
-	:%themata -substitute -flags=g box{,es} bag{,s}
+	:%thematic -substitute -flags=g box{,es} bag{,s}
 	:%S/box{,es}/bag{,s}/g
 <
 The "c", "e", "g", and "n" flags can be used from the substitute command
 |:s_flags|, along with the "a", "I", "v", and "w" flags from searching.
 
-COERCION					*themata-coercion* *cr*
+COERCION					*thematic-coercion* *cr*
 
-themata's case mutating algorithms can be applied to the word under the cursor
+thematic's case mutating algorithms can be applied to the word under the cursor
 using the cr mapping (mnemonic: CoeRce) followed by one of the following
 characters:
 

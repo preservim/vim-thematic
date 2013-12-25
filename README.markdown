@@ -1,4 +1,4 @@
-# `themata.vim`
+# `thematic.vim`
 
 _Manage the look and feel of your Vim text editor_
 
@@ -8,7 +8,7 @@ _Manage the look and feel of your Vim text editor_
 * Support for font and fullscreen settings in GUI-based Vim
 * Integrates with [airline][https://github.com/bling/vim-airline], another `themeable` plugin
 
-## Why `themata`?
+## Why `thematic`?
 
 Many Vim users will keep things simple by sticking with a single theme that suits their needs, configuring it in their `.vimrc` by setting colorscheme, `guifont`, number, status line, etc.. Nothing wrong with that approach.
 
@@ -18,7 +18,7 @@ Writing code, you may want a status bar, ruler, transparency and a programming f
 
 You may want to complement a colorscheme with a particular typeface -- a lightweight anti-aliased typeface like Adobe's _Source Code Pro ExtraLight_ may look great against a black background but be unreadable against a white one. Or for a given typeface you may want a specific [leading][http://en.wikipedia.org/wiki/Leading] as supported with Vim's `linespace`.
 
-Managing such an environment in Vim has traditionally been a hassle. The `themata` plugin is intended to provide the Vim user more flexibility and convenience.
+Managing such an environment in Vim has traditionally been a hassle. The `thematic` plugin is intended to provide the Vim user more flexibility and convenience.
 
 ## What theme properties can I set?
 
@@ -34,7 +34,7 @@ For console or GUI Vim:
 * `sign-column-color-fix` - _temporarily modifies colorscheme to force gutter background_
 * `diff-color-fix` - _temporarily modifies colorscheme to force diff character color_
 * `fold-column-color-mute` - _temporarily modifies colorscheme to hide indicators in foldcolumn_
-* `force-redraw` - _if 1, forces a `redraw!` after `themata` makes changes_
+* `force-redraw` - _if 1, forces a `redraw!` after `thematic` makes changes_
 
 For GUI-based Vim only:
 * `typeface`, `font-size`, and `linespace` - _be specific about typography_
@@ -42,25 +42,25 @@ For GUI-based Vim only:
 * `columns` and `lines` - _manage the width of margins in `fullscreen` mode_
 * `transparency` (0-100) - _view details of window and desktop beneath Vim_
 
-* Check `:help themata` for details.
+* Check `:help thematic` for details.
 
 ## Basic Usage
 
-* Run `:ThemataFirst` to invoke `themata` and choose the first theme. Your themes will be ordered alphabetically.
+* Run `:ThematicFirst` to invoke `thematic` and choose the first theme. Your themes will be ordered alphabetically.
 
     ```vim
-    :ThemataFirst         " select the first theme
-    :ThemataNext          " select the next theme
-    :ThemataPrevious      " select the previous theme
-    :ThemataRandom        " select a random theme
-    :ThemataOriginal      " revert to the original theme
+    :ThematicFirst         " select the first theme
+    :ThematicNext          " select the next theme
+    :ThematicPrevious      " select the previous theme
+    :ThematicRandom        " select a random theme
+    :ThematicOriginal      " revert to the original theme
     ```
 
-`themata` does not map any keys by default, but you can easily do so in your `.vimrc` file, like this:
+`thematic` does not map any keys by default, but you can easily do so in your `.vimrc` file, like this:
 
     ```vim
-    nmap <Leader>t <Plug>ThemataNext
-    nmap <Leader>T <Plug>ThemataPrevious
+    nmap <Leader>t <Plug>ThematicNext
+    nmap <Leader>T <Plug>ThematicPrevious
     ```
 
 ...where with the default leader key of `\`, `\t` would select the next theme in your list, as ordered alphabetically.
@@ -68,7 +68,7 @@ For GUI-based Vim only:
 A few of Vim's standard `colorschemes` are configured as default themes, but you'll likely want to override them with your own, like this:
 
     ```
-    let g:themata#themes = {
+    let g:thematic#themes = {
     \ 'bubblegum'  : { 'typeface': 'CosmicSansNeueMono',
     \                  'sign-column-color-fix': 1,
     \                  'transparency': 10,
@@ -112,12 +112,12 @@ A few of Vim's standard `colorschemes` are configured as default themes, but you
     \ }
     ```
 
-If you don't specify a `colorscheme`, `themata` will assume it matches your theme name.
+If you don't specify a `colorscheme`, `thematic` will assume it matches your theme name.
 
 You can also specify a dictionary of default values, to be shared by all of your themes.
 
     ```
-    let g:themata#defaults = {
+    let g:thematic#defaults = {
     \ 'airline-theme': 'jellybeans',
     \ 'fullscreen-background-color-fix': 1,
     \ 'laststatus': 2,
@@ -128,7 +128,7 @@ You can also specify a dictionary of default values, to be shared by all of your
 
 Note that an explicit setting in a theme will always override these defaults.
 
-Note also that `themata` stays out of your way, ignoring any settings that you aren't explicitly setting through your `themata` configuration.* For example, you can `set guifont=` in your .gvimrc independent of your `themata` configuration.
+Note also that `thematic` stays out of your way, ignoring any settings that you aren't explicitly setting through your `thematic` configuration.* For example, you can `set guifont=` in your .gvimrc independent of your `thematic` configuration.
 
 * * the one exception is `fuoptions` discussed below
 
@@ -145,24 +145,24 @@ Install using Pathogen, Vundle, Neobundle, or your favorite Vim package manager.
 
 ## GUI fullscreen capabilities
 
-`themata` supports fullscreen capabilities in a GUI-based Vim, including typeface, font-size, lines, columns, linespace, transparency and even the fullscreen background.
+`thematic` supports fullscreen capabilities in a GUI-based Vim, including typeface, font-size, lines, columns, linespace, transparency and even the fullscreen background.
 
-Note that once invoked, `themata` will override your fullscreen settings, specifically `fuoptions` to get better control over lines and columns and the fullscreen background.
+Note that once invoked, `thematic` will override your fullscreen settings, specifically `fuoptions` to get better control over lines and columns and the fullscreen background.
 
 ## Column sizing
 
 You may wish to adjust the columns while in full screen. Map to Command-9 and Command-0 in your `.vimrc` with:
 
     ```
-    nmap <silent> <D-9> <Plug>ThemataNarrow
-    nmap <silent> <D-0> <Plug>ThemataWiden
+    nmap <silent> <D-9> <Plug>ThematicNarrow
+    nmap <silent> <D-0> <Plug>ThematicWiden
     ```
 
 ## FAQ
 
 ### Q: I want to set `cursorline`, `wrap`, `foldcolumn`, `list`, `number`, `relativenumber`, `textwidth`, etc. in my themes.
 
-`themata` focuses exclusively on global settings. The settings above are not globally-scoped but are instead scoped to individual buffers and windows. These are best set using the existing `FileType` facility in Vim.
+`thematic` focuses exclusively on global settings. The settings above are not globally-scoped but are instead scoped to individual buffers and windows. These are best set using the existing `FileType` facility in Vim.
 
 In addition, settings like `textwidth` will modify your documents. This plugin strenuously avoids doing anything to change your documents.
 
@@ -194,7 +194,7 @@ Then a cursor line and line numbering will be present whenever you edit a python
 
 ### Q: Using MacVim, the fullscreen background color isn't working as expected. How do I change its behavior?
 
-To have the fullscreen background's color set by `themata`, enter the following in OSX Terminal:
+To have the fullscreen background's color set by `thematic`, enter the following in OSX Terminal:
 
     ```
     $ defaults write org.vim.MacVim MMNativeFullScreen 0
@@ -259,7 +259,7 @@ It works best in GUI Vim's fullscreen. Several steps are involved:
 (4) Finally, add a theme configured to your tastes. Here's an example:
 
     ```
-    let g:themata#themes = {
+    let g:thematic#themes = {
     \ 'mark_lite'   :{ 'colorscheme': 'solarized',
     \                  'background': 'light',
     \                  'columns': 75,
@@ -284,7 +284,7 @@ Console-based emulation is trickier, as there's no easy way to create generous l
 Note that this chooses hard line breaks over soft-wrapping and thus may not be desirable. You can also use the following setting in your theme to hide the indicators in the fold column.
 
     ```
-    let g:themata#themes = {
+    let g:thematic#themes = {
     \ 'YOURTHEME'   :{ 'fold-column-color-mute': 1,
                        ...
     \                },
@@ -307,7 +307,7 @@ You can refresh via `:redraw!`
 As an alternative to key command you can force fullscreen in a theme with:
 
   ```
-  let g:themata#themes = {
+  let g:thematic#themes = {
   \ 'bubblegum'  : { 'fullscreen': 1,
   \                  ...
   \                },

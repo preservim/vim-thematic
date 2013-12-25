@@ -85,29 +85,29 @@ endif
 
 " Commands {{{
 
-command -nargs=0 ThemataNarrow call themata#adjustColumns(-5)
-command -nargs=0 ThemataWiden  call themata#adjustColumns(5)
+command -nargs=0 ThematicNarrow call themata#adjustColumns(-5)
+command -nargs=0 ThematicWiden  call themata#adjustColumns(5)
 
-command -nargs=0 ThemataFirst    call themata#load('#first')
-command -nargs=0 ThemataNext     call themata#load('#next')
-command -nargs=0 ThemataPrevious call themata#load('#previous')
-command -nargs=0 ThemataRandom   call themata#load('#random')
-command -nargs=0 ThemataOriginal call themata#load('#original')
+command -nargs=0 ThematicFirst    call themata#load('#first')
+command -nargs=0 ThematicNext     call themata#load('#next')
+command -nargs=0 ThematicPrevious call themata#load('#previous')
+command -nargs=0 ThematicRandom   call themata#load('#random')
+command -nargs=0 ThematicOriginal call themata#load('#original')
 "command! -nargs=1 MyCommand call s:MyFunc(<f-args>)
 
 " }}}
 
 " Plugin mappings {{{
 
-noremap <silent> <Plug>ThemataNarrow :ThemataNarrow<CR>
-noremap <silent> <Plug>ThemataWiden  :ThemataWiden<CR>
+noremap <silent> <Plug>ThematicNarrow :ThematicNarrow<CR>
+noremap <silent> <Plug>ThematicWiden  :ThematicWiden<CR>
 
-" Create mappings for the `Themata` commands
-noremap <silent> <Plug>ThemataFirst    :ThemataFirst<CR>
-noremap <silent> <Plug>ThemataNext     :ThemataNext<CR>
-noremap <silent> <Plug>ThemataPrevious :ThemataPrevious<CR>
-noremap <silent> <Plug>ThemataRandom   :ThemataRandom<CR>
-noremap <silent> <Plug>ThemataOriginal :ThemataOriginal<CR>
+" Create mappings for the `Thematic` commands
+noremap <silent> <Plug>ThematicFirst    :ThematicFirst<CR>
+noremap <silent> <Plug>ThematicNext     :ThematicNext<CR>
+noremap <silent> <Plug>ThematicPrevious :ThematicPrevious<CR>
+noremap <silent> <Plug>ThematicRandom   :ThematicRandom<CR>
+noremap <silent> <Plug>ThematicOriginal :ThematicOriginal<CR>
 
 " }}}
 
