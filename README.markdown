@@ -60,7 +60,7 @@ you'll want to override them with your own, like this:
     \                },
     \ 'solar_lite' : { 'colorscheme': 'solarized',
     \                  'background': 'light',
-    \                  'signcolumn-color-fix': 1,
+    \                  'sign-column-color-fix': 1,
     \                },
     \ }
     ```
