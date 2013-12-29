@@ -31,6 +31,10 @@ Managing such an multi-theme environment in Vim has traditionally been
 a hassle. The thematic plugin is intended to solve that problem,
 providing you flexibility and convenience.
 
+## Requirements
+
+May require a recent version of Vim.
+
 ## Installation
 
 Install using Pathogen, Vundle, Neobundle, or your favorite Vim package
