@@ -1,4 +1,4 @@
-# `thematic.vim`
+# thematic.vim
 
 > Conveniently manage Vim’s appearance to suit your task and environment
 
@@ -9,7 +9,7 @@
   available with GUI-based support for: font, fullscreen, etc.
 * Integrates with [airline][https://github.com/bling/vim-airline]
 
-## Why `thematic`?
+## Why thematic?
 
 You may be among the many Vim users who keep things simple by sticking
 with a single theme that suits your needs, configuring it in your `.vimrc`
@@ -28,7 +28,7 @@ the screen stripped of all extraneous detail, with a traditional font and
 generous left and right margins.
 
 Managing such an multi-theme environment in Vim has traditionally been
-a hassle. The `thematic` plugin is intended to solve that problem,
+a hassle. The thematic plugin is intended to solve that problem,
 providing you flexibility and convenience.
 
 ## Installation
@@ -65,7 +65,7 @@ you'll want to override them with your own, like this:
     \ }
     ```
 
-If you don't specify a `colorscheme`, `thematic` will attempt to load one
+If you don't specify a `colorscheme`, thematic will attempt to load one
 given your theme name.
 
 You can also specify a dictionary of default values, to be shared by all
@@ -80,14 +80,14 @@ of your themes.
 
 Note that an explicit setting in a theme will always override these defaults.
 
-Note also that `thematic` stays out of your way, ignoring any settings
-that you aren't explicitly setting through your `thematic` configuration.
+Note also that thematic stays out of your way, ignoring any settings
+that you aren't explicitly setting through your thematic configuration.
 For example, you can `set guifont=` in your .gvimrc independent of your
-`thematic` configuration.
+thematic configuration.
 
 ### Commands
 
-Running `:ThematicFirst` invoke `thematic` and chooses the first theme,
+Running `:ThematicFirst` invoke thematic and chooses the first theme,
 as your themes will be reordered alphabetically by name.
 
     ```vim
@@ -99,7 +99,7 @@ as your themes will be reordered alphabetically by name.
     :Thematic {theme_name} " load a theme by name
     ```
 
-`thematic` does not map any keys by default, but you can easily do so in
+thematic does not map any keys by default, but you can easily do so in
 your `.vimrc` file:
 
     ```vim
@@ -126,7 +126,7 @@ For console or GUI Vim:
   character color
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
-* `force-redraw` - if 1, forces a `redraw!` after `thematic` makes changes
+* `force-redraw` - if 1, forces a `redraw!` after thematic makes changes
 
 For GUI-based options, see the `vim-thematic-gui` plugin. Here’s
 a summary:
@@ -141,7 +141,7 @@ a summary:
 
 ### Q: I want to set `cursorline`, `wrap`, `textwidth`, etc. in my themes.
 
-`thematic` focuses exclusively on global settings. The settings above are
+thematic focuses exclusively on global settings. The settings above are
 not globally-scoped but are instead scoped to individual buffers and
 windows. These are best set using the `FileType` feature in Vim.
 
@@ -154,7 +154,7 @@ It works best with GUI Vim's fullscreen. A few steps are involved:
 
 (1) Install a few plugins:
 
-* [vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) - support GUI features in `thematic`
+* [vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) - support GUI features in thematic
 * [vim-markdown](https://github.com/tpope/vim-markdown) - support for editing markdown
 * [vim-writer](https://github.com/reedes/vim-writer) - to configure for word processing
 
@@ -174,7 +174,7 @@ MacVim:
 
     ```
     let g:thematic#themes = {
-    \ 'mark_lite'   :{ 'colorscheme': 'solarized',
+    \ 'iawriter'    :{ 'colorscheme': 'solarized',
     \                  'background': 'light',
     \                  'columns': 75,
     \                  'font-size': 20,
@@ -211,7 +211,7 @@ If you like this plugin, you might like these others from the same author:
 
 * [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
 * [vim-quotable](http://github.com/reedes/vim-quotable) - extends Vim to support typographic (‘curly’) quotes
-* [vim-thematic-gui](http://github.com/reedes/vim-thematic-gui) — A GUI-based extension to the `thematic` plugin for Vim
+* [vim-thematic-gui](http://github.com/reedes/vim-thematic-gui) — A GUI-based extension to the thematic plugin for Vim
 * [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better support writing prose and documentation
 
 ## Future development
