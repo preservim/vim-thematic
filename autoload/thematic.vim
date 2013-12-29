@@ -1,9 +1,14 @@
-" Autoload portion of plugin/thematic.vim.
-"
-" Credit for some font regex/functions: https://github.com/drmikehenry/vim-fontsize
+" ============================================================================
+" File:        autoload/thematic.vim
+" Description: autoload script for vim-thematic plugin
+" Maintainer:  Reed Esau <github.com/reedes>
+" Last Change: December 30, 2013
+" License:     The MIT License (MIT)
+" ============================================================================
 
 if exists("autoloaded_thematic") | finish | endif
 let autoloaded_thematic = 1
+
 
 function! s:getThemeName(mode)
   let l:avail_names = sort(keys(g:thematic#themes))
@@ -41,9 +46,10 @@ function! s:getThemeName(mode)
   endif
 endfunction
 
+
 " Obtain value for theme property, falling back to either user-specified
 " defaults or the original value.
-function! s:getThemeValue(th, key_name, ultimate_fallback_value)
+function! thematic#getThemeValue(th, key_name, ultimate_fallback_value)
   if has_key(g:thematic#defaults, a:key_name)
     let l:fallback_value = get(g:thematic#defaults, a:key_name)
   elseif has_key(g:thematic#original, a:key_name)
@@ -54,6 +60,7 @@ function! s:getThemeValue(th, key_name, ultimate_fallback_value)
   return get(a:th, a:key_name, l:fallback_value)
 endfunction
 
+
 function! s:airline(th)
   " set the g:airline_theme variable and refresh
   "https://github.com/bling/vim-airline/wiki/Screenshots
@@ -63,7 +70,7 @@ function! s:airline(th)
       let g:thematic#original['airline-theme'] = g:airline_theme
     endif
 
-    let l:al = s:getThemeValue(a:th, 'airline-theme', '')
+    let l:al = thematic#getThemeValue(a:th, 'airline-theme', '')
     if l:al != ''
       let g:airline_theme = l:al
     else
@@ -87,27 +94,7 @@ function! s:airline(th)
   endif
 endfunction
 
-" If no explicit settings on lines and columns in
-" either the theme or the defaults, then leave alone.
-function! s:setColumnsAndLines(th)
-
-  let l:columns = s:getThemeValue(a:th, 'columns', 0)
-  if l:columns > 0
-    execute 'set columns=' . l:columns
-  elseif s:getThemeValue(a:th, 'maxhorz', 0)
-    set columns=999
-  endif
-
-  let l:lines = s:getThemeValue(a:th, 'lines', 0)
-  if l:lines > 0
-    execute 'set lines=' . l:lines
-  elseif s:getThemeValue(a:th, 'maxvert', 0)
-    set lines=999
-  endif
-endfunction
-
-
-function! thematic#load(mode)
+function! thematic#init(mode)
   if len(g:thematic#themes) == 0
     echohl WarningMsg | echo 'No themes found.' | echohl NONE
     finish
@@ -145,20 +132,20 @@ function! thematic#load(mode)
   endtry
 
   " use the original background, if not explicit and no default
-  let l:bg = s:getThemeValue(l:th, 'background', '')
+  let l:bg = thematic#getThemeValue(l:th, 'background', '')
   if (l:bg == 'light' || l:bg == 'dark') && &background != l:bg
     execute 'set background=' . l:bg
   endif
 
   " ------ Fix/mute colors ------
 
-  if s:getThemeValue(l:th, 'sign-column-color-fix', 0)
+  if thematic#getThemeValue(l:th, 'sign-column-color-fix', 0)
     " Ensure the gutter matches the text background
     " TODO how about match the number background?
     hi! SignColumn guifg=fg guibg=bg
   endif
 
-  if s:getThemeValue(l:th, 'diff-color-fix', 0)
+  if thematic#getThemeValue(l:th, 'diff-color-fix', 0)
     " Override diff colors
     " TODO figure out what to do for cterm
     hi! DiffAdd    guifg=darkgreen  guibg=bg "cterm=bold ctermbg=237 ctermfg=119
@@ -167,7 +154,7 @@ function! thematic#load(mode)
     hi! DiffText   guifg=fg         guibg=bg
   endif
 
-  if s:getThemeValue(l:th, 'fold-column-color-mute', 0)
+  if thematic#getThemeValue(l:th, 'fold-column-color-mute', 0)
     " Ensure the fold column is blank, for non-distracted editing
     hi! FoldColumn guifg=bg guibg=bg cterm=none ctermbg=none ctermfg=none
   endif
@@ -177,7 +164,7 @@ function! thematic#load(mode)
   " Force the display of a two-column gutter for signs, etc.
   " The sign configuration is apparently buffer-scoped, so iterate
   " over all listed buffers to force the sign column.
-  let l:sc = s:getThemeValue(l:th, 'sign-column', -1)
+  let l:sc = thematic#getThemeValue(l:th, 'sign-column', -1)
   if l:sc == 1
     " TODO how to auto-refresh/disable Signify, gitgutter, etc.?
     sign define dummy
@@ -193,7 +180,7 @@ function! thematic#load(mode)
 
   "  These are all globally-scoped settings
 
-  let l:ruler = s:getThemeValue(l:th, 'ruler', -1)
+  let l:ruler = thematic#getThemeValue(l:th, 'ruler', -1)
   if l:ruler == 1
     set ruler
   elseif l:ruler == 0
@@ -202,7 +189,7 @@ function! thematic#load(mode)
 
   call s:airline(l:th)
 
-  let l:ls = s:getThemeValue(l:th, 'laststatus', -1)
+  let l:ls = thematic#getThemeValue(l:th, 'laststatus', -1)
   if l:ls > 2
     let l:ls = 2
   endif
@@ -212,24 +199,15 @@ function! thematic#load(mode)
 
   " ------ Set GUI-only settings ------
 
-  if has('gui_running')
-    if exists('*thematic#gui#load')
-      call thematic#gui#load(l:th)
-    endif
+  if has('gui_running') && exists('*thematic#gui#init')
+    call thematic#gui#init(l:th)
   endif
-
 
   let g:thematic#theme_name = l:theme_name
 
-  if s:getThemeValue(l:th, 'force-redraw', 0)
+  if thematic#getThemeValue(l:th, 'force-redraw', 0)
     redraw!
   endif
-endfunction
-
-
-function! thematic#adjustColumns(delta)
-  let l:nu_cols = &columns + a:delta
-  silent execute "set columns=" . l:nu_cols
 endfunction
 
 " vim:ts=2:sw=2:sts=2

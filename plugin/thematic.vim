@@ -1,8 +1,10 @@
-" =============================================================================
+" ============================================================================
 " File:        plugin/thematic.vim
-" Description: Theme Manager for the Vim text editor
+" Description: script for vim-thematic plugin
 " Maintainer:  Reed Esau <github.com/reedes>
-" =============================================================================
+" Last Change: December 30, 2013
+" License:     The MIT License (MIT)
+" ============================================================================
 "
 " TODO licensing
 " TODO guioptions
@@ -48,15 +50,12 @@ endif
 
 " Commands 
 
-command -nargs=0 ThematicNarrow call thematic#adjustColumns(-5)
-command -nargs=0 ThematicWiden  call thematic#adjustColumns(5)
-
-command -nargs=0 ThematicFirst    call thematic#load('#first')
-command -nargs=0 ThematicNext     call thematic#load('#next')
-command -nargs=0 ThematicPrevious call thematic#load('#previous')
-command -nargs=0 ThematicRandom   call thematic#load('#random')
-command -nargs=0 ThematicOriginal call thematic#load('#original')
-"command! -nargs=1 MyCommand call s:MyFunc(<f-args>)
+command -nargs=0 ThematicFirst    call thematic#init('#first')
+command -nargs=0 ThematicNext     call thematic#init('#next')
+command -nargs=0 ThematicPrevious call thematic#init('#previous')
+command -nargs=0 ThematicRandom   call thematic#init('#random')
+command -nargs=0 ThematicOriginal call thematic#init('#original')
+command -nargs=1 Thematic         call thematic#init(<f-args>)
 
 " Plugin mappings 
 
