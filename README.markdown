@@ -1,4 +1,4 @@
-# thematic.vim
+# vim-thematic
 
 > Conveniently manage Vim’s appearance to suit your task and environment
 
