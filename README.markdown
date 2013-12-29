@@ -7,7 +7,7 @@
 * No predefined key mappings to interfere with your other mappings
 * [vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) extension
   available with GUI-based support for: font, fullscreen, etc.
-* Integrates with [airline][https://github.com/bling/vim-airline]
+* Integrates with [airline](https://github.com/bling/vim-airline)
 
 ## Why thematic?
 
