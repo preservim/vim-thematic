@@ -2,84 +2,9 @@
 "
 " Credit for some font regex/functions: https://github.com/drmikehenry/vim-fontsize
 
-if exists("autoloaded_thematic")
-  finish
-endif
+if exists("autoloaded_thematic") | finish | endif
 let autoloaded_thematic = 1
 
-" # FONT REGEXES {{{1
-" Regex values for each platform split guifont into three
-" sections (\1, \2, and \3 in capturing parentheses):
-" - prefix
-" - size (possibly fractional)
-" - suffix (possibly including extra fonts after commas)
-
-if has("gui_macvim")
-  " gui_macvim: Courier\ New:h11
-  let s:regex = '\(.\{-}\):h\(\d\+\)'
-elseif has("gui_gtk2")
-  " gui_gtk2: Courier\ New\ 11
-  let s:regex = '\(.\{-} \)\(\d\+\)\(.*\)'
-elseif has("gui_photon")
-  " gui_photon: Courier\ New:s11
-  let s:regex = '\(.\{-}\):s\(\d\+\)\(.*\)'
-elseif has("gui_kde")
-  " gui_kde: Courier\ New/11/-1/5/50/0/0/0/1/0
-  let s:regex = '\(.\{-}\)\/\(\d\+\)\(.*\)'
-"elseif has("x11")
-"  " gui_x11: -*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-"  let s:regex = '\(.\{-}-\)\(\d\+\)\(.*\)'
-else
-  " gui_other: Courier_New:h11:cDEFAULT
-  let s:regex = '\(.\{-}\):h\(\d\+\)\(.*\)'
-endif
-" }}}1
-
-" # FUNCTIONS {{{1
-" # Function: s:encodeFont {{{2
-function! s:encodeFont(font)
-  if has("iconv") && exists("g:thematic#encoding")
-    let encodedFont = iconv(a:font, &enc, g:thematic#encoding)
-  else
-    let encodedFont = a:font
-  endif
-  return encodedFont
-endfunction
-" }}}2
-" # Function: s:decodeFont {{{2
-function! s:decodeFont(font)
-  if has("iconv") && exists("g:thematic#encoding")
-    let decodedFont = iconv(a:font, g:thematic#encoding, &enc)
-  else
-    let decodedFont = a:font
-  endif
-  return decodedFont
-endfunction
-" }}}2
-" # Function: s:getSize {{{2
-function! s:getSize(font, fallback)
-  let l:decodedFont = s:decodeFont(a:font)
-  if match(l:decodedFont, s:regex) != -1
-    " Add zero to convert to integer.
-    let l:size = 0 + substitute(l:decodedFont, s:regex, '\2', '')
-  else
-    let l:size = 0 + fallback
-  endif
-  return l:size
-endfunction
-" }}}2
-" # Function: s:getTypeface {{{2
-function! s:getTypeface(font, fallback)
-  let decodedFont = s:decodeFont(a:font)
-  if match(decodedFont, s:regex) != -1
-    let l:typeface = substitute(decodedFont, s:regex, '\1', '')
-  else
-    let l:typeface = a:fallback
-  endif
-  return l:typeface
-endfunction
-" }}}2
-" # Function: s:getThemeName {{{2
 function! s:getThemeName(mode)
   let l:avail_names = sort(keys(g:thematic#themes))
   let l:avail_count = len(l:avail_names)
@@ -115,8 +40,7 @@ function! s:getThemeName(mode)
     return l:avail_names[l:new_n]
   endif
 endfunction
-" }}}2
-" # Function: s:getThemeValue {{{2
+
 " Obtain value for theme property, falling back to either user-specified
 " defaults or the original value.
 function! s:getThemeValue(th, key_name, ultimate_fallback_value)
@@ -129,21 +53,7 @@ function! s:getThemeValue(th, key_name, ultimate_fallback_value)
   endif
   return get(a:th, a:key_name, l:fallback_value)
 endfunction
-" }}}2
-" # Function: s:updateFullscreenBackground {{{2
-" Note that bgcolor may not be available at initial program load
-function! s:updateFullscreenBackground()
-  " #123456 => #00123456
-  let l:bgcolor=synIDattr(hlID('Normal'), 'bg#')
-  if l:bgcolor =~ '#[0-9a-fA-F]\+'
-    let l:border_color = substitute(l:bgcolor, '#', '#00', '')
-    " Note that this will blow away existing options, such
-    " as maxhorz and maxvert, but we removed those earlier.
-    execute 'set fuoptions=background:' . l:border_color
-  endif
-endfunction
-" }}}2
-" # Function: s:airline {{{2
+
 function! s:airline(th)
   " set the g:airline_theme variable and refresh
   "https://github.com/bling/vim-airline/wiki/Screenshots
@@ -176,130 +86,7 @@ function! s:airline(th)
     AirlineRefresh
   endif
 endfunction
-" }}}2
-" # Function: s:composeGuifontString {{{2
-function! s:composeGuifontString(typeface, fontsize)
-  " TODO need support for platform-specific suffixes
-  let l:encoded_typeface = s:encodeFont(a:typeface)
-  if has('gui_macvim')
-    "set guifont=Courier\ New\:h11
-    let l:gf = substitute(l:encoded_typeface, ' ', '\\ ', 'g') . '\:h' . a:fontsize
-  elseif has('gui_gtk') || has('gui_gtk2') || has('gui_gnome')
-    "set guifont=Courier\ New\ 11
-    let l:gf = substitute(l:encoded_typeface, ' ', '\\ ', 'g') . '\ ' . a:fontsize
-  elseif has('gui_photon')
-    "set guifont=Courier\ New:s11
-    let l:gf = substitute(l:encoded_typeface, ' ', '\\ ', 'g') . ':s' . a:fontsize
-  elseif has('gui_kde') "|| has('gui_qt')
-    "set guifont=B&H\ LucidaTypewriter/9/-1/5/50/0/0/0/1/0
-    "set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
-    let l:gf = substitute(l:encoded_typeface, ' ', '\\ ', 'g') . '/' . a:fontsize
-  "elseif has("x11") && !(has("gui_gtk2") || has("gui_kde") || has("gui_photon"))
-  "  "set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-  "  " 18.0pt Courier
-  "  "set gfn=-*-lucidatypewriter-medium-r-normal-*-*-95-*-*-m-*-*
-  "  " 9.5pt LucidaTypewriter
-  "  let l:gf = '-*-' . tolower(l:tf) . '-medium-r-normal-*-*-' . (l:fs*10) . '-*-*-m-*-*'
-  elseif has('win32') || has('win64') "|| has('gui_win32') || has('gui_win64')
-    "set guifont=courier_new:h11
-    "set guifont=Lucida_Console:h8:cANSI
-    let l:gf = substitute(l:encoded_typeface, ' ', '_', 'g') . ':h' . a:fontsize
-  else
-    echoerr 'GUI platform not yet supported'
-    let l:gf = ''
-  endif
-  return l:gf
-endfunction
-" }}}2
-" # Function: s:setGuifont {{{2
-function! s:setGuifont(gf)
-  if strlen(a:gf)
-    try
-      execute 'set guifont=' . a:gf
-      return 1
-    catch /E596/
-      echohl ErrorMsg
-      echo 'Unable to set guifont=' . a:gf
-      echohl None
-    endtry
-  endif
-  return 0
-endfunction
-" }}}
-" # Function: s:guiFont {{{2
-function! s:guiFont(th)
-  " attempt to preserve original font if not yet set
-  if !has_key(g:thematic#original, 'typeface')
-    let l:typeface = s:getTypeface(&guifont, '')
-    if l:typeface != ''
-      let g:thematic#original['typeface'] = l:typeface
-    endif
-  endif
-  if !has_key(g:thematic#original, 'font-size')
-    let l:size = s:getSize(&guifont, 0)
-    if l:size != 0
-      let g:thematic#original['font-size'] = l:size
-    endif
-  endif
 
-  let l:tf = s:getThemeValue(a:th, 'typeface', '')
-  let l:fs = s:getThemeValue(a:th, 'font-size', -1)
-
-  " TODO support list of typefaces with most desired as first in list
-  let l:gf = s:composeGuifontString(l:tf, l:fs)
-  if l:gf != ''
-    call s:setGuifont(l:gf)
-  endif
-endfunction
-" }}}2
-" # Function: s:guiMisc {{{2
-function! s:guiMisc(th)
-  let l:tr = s:getThemeValue(a:th, 'transparency', -1)
-  if l:tr > 100
-    let l:tr = 100
-  endif
-  if l:tr > 0
-    try
-      execute 'set transparency=' . l:tr
-    catch
-      echohl ErrorMsg
-      echo 'Unable to set transparency=' . l:tr
-      echohl None
-    endtry
-  endif
-
-  let l:ls = s:getThemeValue(a:th, 'linespace', -1)
-  if l:ls != -1
-    try
-      execute 'set linespace=' . l:ls
-    catch
-      echohl ErrorMsg
-      echo 'Unable to set linespace=' . l:ls
-      echohl None
-    endtry
-  endif
-
-  if has('fullscreen')
-    " Because it can be jarring to see fullscreen disable,
-    " we'll only enable it.
-    if !&fullscreen && s:getThemeValue(a:th, 'fullscreen', -1) == 1
-      try
-        set fullscreen
-      catch
-        echohl ErrorMsg
-        echo 'Fullscreen not supported'
-        echohl None
-      endtry
-    endif
-
-    " Have the fullscreen background match the text background
-    if s:getThemeValue(a:th, 'fullscreen-background-color-fix', 0)
-      call s:updateFullscreenBackground()
-    endif
-  endif
-endfunction
-" }}}2
-" # Function: s:setColumnsAndLines {{{2
 " If no explicit settings on lines and columns in
 " either the theme or the defaults, then leave alone.
 function! s:setColumnsAndLines(th)
@@ -318,8 +105,8 @@ function! s:setColumnsAndLines(th)
     set lines=999
   endif
 endfunction
-" }}}2
-" # Function: load {{{2
+
+
 function! thematic#load(mode)
   if len(g:thematic#themes) == 0
     echohl WarningMsg | echo 'No themes found.' | echohl NONE
@@ -343,7 +130,7 @@ function! thematic#load(mode)
     let l:th = get(g:thematic#themes, l:theme_name, {})
   endif
 
-  " ------ Set colorscheme and background ------ {{{3
+  " ------ Set colorscheme and background ------
 
   " assume the colorscheme matches the theme name if not explicit
   let l:cs = get(l:th, 'colorscheme', l:theme_name)
@@ -363,9 +150,7 @@ function! thematic#load(mode)
     execute 'set background=' . l:bg
   endif
 
-  " }}}3
-
-  " ------ Fix/mute colors ------ {{{3
+  " ------ Fix/mute colors ------
 
   if s:getThemeValue(l:th, 'sign-column-color-fix', 0)
     " Ensure the gutter matches the text background
@@ -387,9 +172,7 @@ function! thematic#load(mode)
     hi! FoldColumn guifg=bg guibg=bg cterm=none ctermbg=none ctermfg=none
   endif
 
-  " }}}3
-
-  " ------ Set sign column for all buffers ------ {{{3
+  " ------ Set sign column for all buffers ------
 
   " Force the display of a two-column gutter for signs, etc.
   " The sign configuration is apparently buffer-scoped, so iterate
@@ -406,9 +189,7 @@ function! thematic#load(mode)
     sign unplace *
   endif
 
-  " }}}3
-
-  " ------ Set statusline, ruler, airline_theme ------ {{{3
+  " ------ Set statusline, ruler, airline_theme ------
 
   "  These are all globally-scoped settings
 
@@ -429,17 +210,14 @@ function! thematic#load(mode)
     execute 'set laststatus=' . l:ls
   endif
 
-  " }}}3
-
-  " ------ Set GUI-only settings ------ {{{3
+  " ------ Set GUI-only settings ------
 
   if has('gui_running')
-    call s:guiFont(l:th)
-    call s:guiMisc(l:th)
-    call s:setColumnsAndLines(l:th)
+    if exists('*thematic#gui#load')
+      call thematic#gui#load(l:th)
+    endif
   endif
 
-  " }}}3
 
   let g:thematic#theme_name = l:theme_name
 
@@ -447,12 +225,11 @@ function! thematic#load(mode)
     redraw!
   endif
 endfunction
-" }}}2
-" # Function: adjustColumns {{{2
+
+
 function! thematic#adjustColumns(delta)
   let l:nu_cols = &columns + a:delta
   silent execute "set columns=" . l:nu_cols
 endfunction
-" }}}2
-" }}}1
+
 " vim:ts=2:sw=2:sts=2
