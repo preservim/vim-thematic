@@ -148,7 +148,7 @@ windows. These are best set using the `FileType` feature in Vim.
 In addition, settings like `textwidth` will modify your documents, which
 this plugin strenuously avoids.
 
-### Q: How can I configure Vim to emulate soft-wrapping markdown editors like IAWriter?
+### Q: How can I configure Vim to emulate markdown editors like IAWriter?
 
 It works best with GUI Vim's fullscreen. A few steps are involved:
 
