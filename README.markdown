@@ -200,10 +200,10 @@ with a narrow `textwidth`:
 
 If this project is not to your liking, you might enjoy:
 
-* [vim-ultimate-colorscheme-utility][https://github.com/biskark/vim-ultimate-colorscheme-utility]
-* [stylish][https://github.com/mislav/stylish.vim]
-* [vim-session][https://github.com/xolox/vim-session]
-* [vim-obsession][https://github.com/tpope/vim-obsession]
+* [vim-ultimate-colorscheme-utility](https://github.com/biskark/vim-ultimate-colorscheme-utility)
+* [stylish](https://github.com/mislav/stylish.vim)
+* [vim-session](https://github.com/xolox/vim-session)
+* [vim-obsession](https://github.com/tpope/vim-obsession)
 
 ## See also
 
