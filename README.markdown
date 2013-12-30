@@ -49,27 +49,27 @@ manager.
 A few of Vim's standard `colorschemes` are configured by default, but
 you'll want to override them with your own, like this:
 
-    ```vim
-    let g:thematic#themes = {
-    \ 'bubblegum'  : {
-    \                },
-    \ 'jellybeans' : { 'laststatus': 0,
-    \                  'ruler': 1,
-    \                },
-    \ 'matrix'     : { 'colorscheme': 'base16-greenscreen',
-    \                  'laststatus': 0,
-    \                },
-    \ 'solar_dark' : { 'colorscheme': 'solarized',
-    \                  'background': 'dark',
-    \                  'diff-color-fix': 1,
-    \                  'sign-column-color-fix': 1,
-    \                },
-    \ 'solar_lite' : { 'colorscheme': 'solarized',
-    \                  'background': 'light',
-    \                  'sign-column-color-fix': 1,
-    \                },
-    \ }
-    ```
+```vim
+let g:thematic#themes = {
+\ 'bubblegum'  : {
+\                },
+\ 'jellybeans' : { 'laststatus': 0,
+\                  'ruler': 1,
+\                },
+\ 'matrix'     : { 'colorscheme': 'base16-greenscreen',
+\                  'laststatus': 0,
+\                },
+\ 'solar_dark' : { 'colorscheme': 'solarized',
+\                  'background': 'dark',
+\                  'diff-color-fix': 1,
+\                  'sign-column-color-fix': 1,
+\                },
+\ 'solar_lite' : { 'colorscheme': 'solarized',
+\                  'background': 'light',
+\                  'sign-column-color-fix': 1,
+\                },
+\ }
+```
 
 If you don't specify a `colorscheme`, thematic will attempt to load one
 given your theme name.
@@ -77,12 +77,12 @@ given your theme name.
 You can also specify a dictionary of default values, to be shared by all
 of your themes.
 
-    ```vim
-    let g:thematic#defaults = {
-    \ 'airline-theme': 'jellybeans',
-    \ 'laststatus': 2,
-    \ }
-    ```
+```vim
+let g:thematic#defaults = {
+\ 'airline-theme': 'jellybeans',
+\ 'laststatus': 2,
+\ }
+```
 
 Note that an explicit setting in a theme will always override these defaults.
 
@@ -96,22 +96,22 @@ thematic configuration.
 Running `:ThematicFirst` invoke thematic and chooses the first theme,
 as your themes will be reordered alphabetically by name.
 
-    ```vim
-    :ThematicFirst         " switch to the first theme, ordered by name
-    :ThematicNext          " switch to the next theme, ordered by name
-    :ThematicPrevious      " switch to the previous theme, ordered by name
-    :ThematicRandom        " switch to a random theme
-    :ThematicOriginal      " revert to the original theme
-    :Thematic {theme_name} " load a theme by name
-    ```
+```vim
+:ThematicFirst         " switch to the first theme, ordered by name
+:ThematicNext          " switch to the next theme, ordered by name
+:ThematicPrevious      " switch to the previous theme, ordered by name
+:ThematicRandom        " switch to a random theme
+:ThematicOriginal      " revert to the original theme
+:Thematic {theme_name} " load a theme by name
+```
 
 thematic does not map any keys by default, but you can easily do so in
 your `.vimrc` file:
 
-    ```vim
-    nnoremap <Leader>t <Plug>ThematicNext
-    nnoremap <Leader>T <Plug>ThematicPrevious
-    ```
+```vim
+nnoremap <Leader>t <Plug>ThematicNext
+nnoremap <Leader>T <Plug>ThematicPrevious
+```
 
 ## What theme properties can I set?
 
@@ -166,41 +166,41 @@ It works best with GUI Vim's fullscreen. A few steps are involved:
 
 (2) Edit your `.gvimrc` to disable the tool bar, etc.
 
-    ```
-    set antialias
-    set guicursor+=a:blinkon0    " disable cursor blink
-    set guioptions-=r   "kill right scrollbar
-    set guioptions-=l   "kill left scrollbar
-    set guioptions-=L   "kill left scrollbar multiple buffers
-    set guioptions-=T   "kill toolbar
-    ```
+```vim
+set antialias
+set guicursor+=a:blinkon0    " disable cursor blink
+set guioptions-=r   "kill right scrollbar
+set guioptions-=l   "kill left scrollbar
+set guioptions-=L   "kill left scrollbar multiple buffers
+set guioptions-=T   "kill toolbar
+```
 
 (3) Finally, create a theme configured to your tastes. Here's an example for
 MacVim:
 
-    ```
-    let g:thematic#themes = {
-    \ 'iawriter'    :{ 'colorscheme': 'solarized',
-    \                  'background': 'light',
-    \                  'columns': 75,
-    \                  'font-size': 20,
-    \                  'fullscreen': 1,
-    \                  'laststatus': 0,
-    \                  'linespace': 8,
-    \                  'typeface': 'Menlo',
-    \                },
-    ...
-    \ }
-    ```
+```vim
+let g:thematic#themes = {
+\ 'iawriter'    :{ 'colorscheme': 'solarized',
+\                  'background': 'light',
+\                  'columns': 75,
+\                  'font-size': 20,
+\                  'fullscreen': 1,
+\                  'laststatus': 0,
+\                  'linespace': 8,
+\                  'typeface': 'Menlo',
+\                },
+...
+\ }
+```
 
 Without GUI-based Vim, console-based emulation is trickier, as there's no
 easy way to create generous left and right margins. You can approximate it
 by switching from soft-wrap to hard line breaks with `vim-writer` and using
 with a narrow `textwidth`:
 
-    ```
-    autocmd FileType markdown set foldcolumn=12 textwidth=74
-    ```
+```vim
+autocmd FileType markdown set foldcolumn=12 textwidth=74
+```
 
 ## Related projects
 
