@@ -5,13 +5,6 @@
 " Last Change: December 30, 2013
 " License:     The MIT License (MIT)
 " ============================================================================
-"
-" TODO licensing
-" TODO guioptions
-" TODO screen capture
-" TODO help file
-" TODO command to support named theme, with custom completion
-" TODO test from filetype
 
 if exists('g:loaded_thematic') || &cp | finish | endif
 let g:loaded_thematic = 1
