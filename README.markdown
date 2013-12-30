@@ -2,8 +2,6 @@
 
 > Conveniently manage Vim’s appearance to suit your task and environment
 
-![demo](screenshots/thematic-console.gif)
-
 * Groups global settings (like colorscheme) into ‘themes’
 * Stays out of your way, except where you want it
 * No predefined key mappings to interfere with your other mappings
