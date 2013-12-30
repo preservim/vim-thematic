@@ -205,9 +205,8 @@ function! thematic#init(mode)
 
   let g:thematic#theme_name = l:theme_name
 
-  if thematic#getThemeValue(l:th, 'force-redraw', 0)
-    redraw!
-  endif
+  " only seems to work for non-gui
+  "redraw | echo 'Thematic: ' . l:theme_name
 endfunction
 
 " vim:ts=2:sw=2:sts=2

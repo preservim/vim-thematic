@@ -130,7 +130,6 @@ For console or GUI Vim:
   character color
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
-* `force-redraw` - if 1, forces a `redraw!` after thematic makes changes
 
 For GUI-based options, see the `vim-thematic-gui` plugin. Here’s
 a summary:
