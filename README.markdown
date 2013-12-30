@@ -14,12 +14,12 @@
 ## Why thematic?
 
 You may be among the many Vim users who keep things simple by sticking
-with a single theme that suits your needs, configuring it in your `.vimrc`
+with a single theme that suits their needs, configuring it in their `.vimrc`
 by setting the color scheme, font and status line.
 
 Or you might instead be among the users who instead configure the visual
 details of Vim to match the lighting conditions or task at hand, or even
-to suit your mood. For example, you might choose a theme that is less
+to suit their mood. For example, you might choose a theme that is less
 fatiguing to your eyes given the ambient lighting conditions, where you'll
 have a muted theme for a dark room and a high-contrast theme for use in
 a bright one.
