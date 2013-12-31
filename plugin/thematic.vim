@@ -15,14 +15,14 @@ set cpo&vim
 
 let g:thematic#theme_name = ''
 
-" Preserve original settings 
+" Preserve original settings
 
 let g:thematic#original = {
   \ 'laststatus': &laststatus,
   \ 'ruler': &ruler,
   \ }
 
-" Defaults 
+" Defaults
 if !exists('g:thematic#defaults')
   let g:thematic#defaults = {}
 endif
@@ -41,16 +41,25 @@ if !exists('g:thematic#themes')
   \ }
 endif
 
-" Commands 
+function! <SID>chooseTheme(ArgLead, CmdLine, CursorPos)
+  return sort(keys(g:thematic#themes))
+endfunction
+
+" Commands
+
+" Thematic {theme_name}
+command -nargs=1
+      \ -complete=customlist,<SID>chooseTheme
+      \ Thematic
+      \ call thematic#init(<f-args>)
 
 command -nargs=0 ThematicFirst    call thematic#init('#first')
 command -nargs=0 ThematicNext     call thematic#init('#next')
 command -nargs=0 ThematicPrevious call thematic#init('#previous')
 command -nargs=0 ThematicRandom   call thematic#init('#random')
 command -nargs=0 ThematicOriginal call thematic#init('#original')
-command -nargs=1 Thematic         call thematic#init(<f-args>)
 
-" Plugin mappings 
+" Plugin mappings
 
 noremap <silent> <Plug>ThematicNarrow :ThematicNarrow<CR>
 noremap <silent> <Plug>ThematicWiden  :ThematicWiden<CR>
