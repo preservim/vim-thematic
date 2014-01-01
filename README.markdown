@@ -183,13 +183,14 @@ For console or GUI-based Vim:
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
 
-The following options are for GUI-based Vim only:
+The following options are for GUI-based Vim only (they will be ignored 
+if you're running in console-based Vim):
 
 Typography-related:
 
 * `typeface` - name of font
 * `font-size` - point size of font
-* `linespace` (0+) - additional pixel spacing between lines
+* `linespace` (0+) - pixel spacing between lines to allow the type to breathe
 
 Screen-related:
 
