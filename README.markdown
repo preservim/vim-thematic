@@ -107,8 +107,7 @@ thematic does not map any keys by default, but you can easily do so in
 your `.vimrc` file:
 
 ```vim
-nnoremap <Leader>t <Plug>ThematicNext
-nnoremap <Leader>T <Plug>ThematicPrevious
+nnoremap <Leader>T <Plug>ThematicNext
 ```
 
 ## What theme properties can I set?
@@ -212,6 +211,7 @@ If this project is not to your liking, you might enjoy:
 
 If you like this plugin, you might like these others from the same author:
 
+* [vim-lexical](http://github.com/reedes/vim-lexical) - Building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
 * [vim-quotable](http://github.com/reedes/vim-quotable) - extends Vim to support typographic (‘curly’) quotes
 * [vim-thematic-gui](http://github.com/reedes/vim-thematic-gui) — A GUI-based extension to the thematic plugin for Vim
