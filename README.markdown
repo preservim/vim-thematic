@@ -6,7 +6,7 @@
 * Stays out of your way, except where you want it
 * No predefined key mappings to interfere with your other mappings
 * Integrates with [airline](https://github.com/bling/vim-airline)
-* Support for GUI-based Vim includes support for font, linespace, fullscreen,
+* Support for GUI-based Vim includes: font, linespace, fullscreen,
   transparency, and screen columns/lines
 
 ## Why thematic?
@@ -31,10 +31,11 @@ Managing such an multi-theme environment in Vim has traditionally been
 a hassle. The thematic plugin is intended to solve that problem,
 providing you flexibility and convenience.
 
-GUI-based Vim users can complement a colorscheme with a particular typeface.
-For example, the lightweight anti-aliased typeface like Adobe's _Source Code
-Pro ExtraLight_ may look great against a black background but be unreadable
-against a white one, so you’ll only pair it with an appropriate colorscheme.
+GUI-based Vim users can complement a colorscheme with a particular
+typeface. For example, the lightweight anti-aliased typeface like Adobe's
+_Source Code Pro ExtraLight_ may look great against a black background but
+be unreadable against a white one, so you’ll only pair it with an
+appropriate colorscheme.
 
 Or for a particular typeface you may want a larger
 [leading](http://en.wikipedia.org/wiki/Leading) to reduce crowding of
