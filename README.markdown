@@ -12,8 +12,8 @@
 ## Why thematic?
 
 You may be among the many Vim users who keep things simple by sticking
-with a single theme that suits their needs, configuring it in their `.vimrc`
-by setting the color scheme, font and status line.
+with a single theme that suits their needs, configuring it in their
+`.vimrc` by setting the color scheme, font and status line.
 
 Or you might instead be among the users who instead configure the visual
 details of Vim to match the lighting conditions or task at hand, or even
@@ -130,8 +130,9 @@ For console or GUI Vim:
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
 
-For GUI-based options, see the `vim-thematic-gui` plugin. Here’s
-a summary:
+For GUI-based options, see the
+[vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) plugin.
+Here’s a summary:
 
 * `typeface`, `font-size`, and `linespace` - be specific about typography
 * `fullscreen` and `fullscreen-background-color-fix` - force a switch to
@@ -141,7 +142,7 @@ a summary:
 
 ## FAQ
 
-### Q: I want to set `cursorline`, `wrap`, `textwidth`, etc. in my themes.
+### Q: I want to set `cursorline`, `wrap`, `textwidth`, `foldcolumn`, etc. in my themes.
 
 thematic focuses exclusively on global settings. The settings above are
 not globally-scoped but are instead scoped to individual buffers and
@@ -219,7 +220,7 @@ If you like this plugin, you might like these others from the same author:
 
 ## Future development
 
-If you have any ideas on improving this plugin, please post them to the github
-project issue page.
+If you have any ideas on improving this plugin, please post them to the
+github project issue page.
 
 <!-- vim: set tw=74 :-->

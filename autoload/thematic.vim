@@ -141,22 +141,20 @@ function! thematic#init(mode)
 
   if thematic#getThemeValue(l:th, 'sign-column-color-fix', 0)
     " Ensure the gutter matches the text background
-    " TODO how about match the number background?
-    hi! SignColumn guifg=fg guibg=bg
+    hi! SignColumn guifg=fg guibg=bg ctermfg=fg ctermbg=bg
   endif
 
   if thematic#getThemeValue(l:th, 'diff-color-fix', 0)
     " Override diff colors
-    " TODO figure out what to do for cterm
-    hi! DiffAdd    guifg=darkgreen  guibg=bg "cterm=bold ctermbg=237 ctermfg=119
-    hi! DiffDelete guifg=darkorange guibg=bg "cterm=bold ctermbg=237 ctermfg=167
-    hi! DiffChange guifg=darkyellow guibg=bg "cterm=bold ctermbg=237 ctermfg=227
-    hi! DiffText   guifg=fg         guibg=bg
+    hi! DiffAdd    guifg=darkgreen  guibg=bg cterm=bold ctermbg=bg ctermfg=119
+    hi! DiffDelete guifg=darkorange guibg=bg cterm=bold ctermbg=bg ctermfg=167
+    hi! DiffChange guifg=darkyellow guibg=bg cterm=bold ctermbg=bg ctermfg=227
+    hi! DiffText   guifg=fg         guibg=bg cterm=none ctermbg=fg ctermfg=fg
   endif
 
   if thematic#getThemeValue(l:th, 'fold-column-color-mute', 0)
     " Ensure the fold column is blank, for non-distracted editing
-    hi! FoldColumn guifg=bg guibg=bg cterm=none ctermbg=none ctermfg=none
+    hi! FoldColumn guifg=bg guibg=bg cterm=bold ctermbg=bg ctermfg=bg
   endif
 
   " ------ Set sign column for all buffers ------
