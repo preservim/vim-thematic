@@ -143,8 +143,8 @@ let g:thematic#themes = {
 
 ### Commands
 
-Running `:ThematicFirst` invoke thematic and chooses the first theme,
-as your themes will be reordered alphabetically by name.
+Running `:ThematicFirst` invokes thematic and chooses the first theme.
+Note that your themes will be ordered alphabetically by name.
 
 ```vim
 :ThematicFirst         " switch to the first theme, ordered by name
