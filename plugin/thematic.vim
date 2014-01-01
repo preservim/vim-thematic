@@ -17,10 +17,12 @@ let g:thematic#theme_name = ''
 
 " Preserve original settings
 
-let g:thematic#original = {
-  \ 'laststatus': &laststatus,
-  \ 'ruler': &ruler,
-  \ }
+let g:thematic#original = {}
+let g:thematic#original.laststatus = &laststatus
+let g:thematic#original.ruler = &ruler
+if has('fullscreen')
+  call thematic#gui#initFullscreen()
+endif
 
 " Defaults
 if !exists('g:thematic#defaults')

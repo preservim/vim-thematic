@@ -5,9 +5,9 @@
 * Groups global settings (like colorscheme) into ‘themes’
 * Stays out of your way, except where you want it
 * No predefined key mappings to interfere with your other mappings
-* [vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) extension
-  available with GUI-based support for: font, fullscreen, etc.
 * Integrates with [airline](https://github.com/bling/vim-airline)
+* Support for GUI-based Vim includes support for font, linespace, fullscreen,
+  transparency, and screen columns/lines
 
 ## Why thematic?
 
@@ -30,6 +30,15 @@ generous left and right margins.
 Managing such an multi-theme environment in Vim has traditionally been
 a hassle. The thematic plugin is intended to solve that problem,
 providing you flexibility and convenience.
+
+GUI-based Vim users can complement a colorscheme with a particular typeface.
+For example, the lightweight anti-aliased typeface like Adobe's _Source Code
+Pro ExtraLight_ may look great against a black background but be unreadable
+against a white one, so you’ll only pair it with an appropriate colorscheme.
+
+Or for a particular typeface you may want a larger
+[leading](http://en.wikipedia.org/wiki/Leading) to reduce crowding of
+lines. See the `linespace` option.
 
 ## Requirements
 
@@ -89,6 +98,48 @@ that you aren't explicitly setting through your thematic configuration.
 For example, you can `set guifont=` in your .gvimrc independent of your
 thematic configuration.
 
+GUI-based Vim users have additional options available in theming. For example,
+
+```vim
+let g:thematic#defaults = {
+...
+\ 'font-size': 20,
+\ 'transparency': 0,
+\ }
+```
+    
+```vim
+let g:thematic#themes = {
+\ 'bubblegum'  : { 'typeface': 'Cutive Mono',
+\                  'linespace': 9,
+\                },
+\ 'matrix'     : { 'colorscheme': 'base16-greenscreen',
+\                  'font-size': 24,
+\                  'linespace': 9,
+\                  'typeface': 'Dot Matrix',
+\                  'transparency': 10,
+\                },
+\ 'solar_dark' : { 'colorscheme': 'solarized',
+\                  ...
+\                  'typeface': 'Source Code Pro Light',
+\                },
+\ 'solar_lite' : { 'colorscheme': 'solarized',
+\                  ...
+\                  'font-size': 20,
+\                  'linespace': 8,
+\                  'typeface': 'Source Code Pro',
+\                },
+\ 'iawriter'   : { 'colorscheme': 'reede_light',
+\                  ...
+\                  'columns': 75,
+\                  'font-size': 20,
+\                  'fullscreen': 1,
+\                  'linespace': 8,
+\                  'typeface': 'Menlo',
+\                },
+\ }
+```
+
 ### Commands
 
 Running `:ThematicFirst` invoke thematic and chooses the first theme,
@@ -114,7 +165,7 @@ nnoremap <Leader>T <Plug>ThematicNext
 
 For each theme you specify one or more properties.
 
-For console or GUI Vim:
+For console or GUI-based Vim:
 * `laststatus` (0, 1, or 2) - controls the visibility of the status bar
 * `ruler` - as alternative to status bar, shows minimal position details
   in lower right
@@ -130,15 +181,33 @@ For console or GUI Vim:
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
 
-For GUI-based options, see the
-[vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) plugin.
-Here’s a summary:
+The following options are for GUI-based Vim only:
 
-* `typeface`, `font-size`, and `linespace` - be specific about typography
-* `fullscreen` and `fullscreen-background-color-fix` - force a switch to
-  fullscreen, with optional change of color of the background (or border)
-* `columns` and `lines` - manage the width of margins in `fullscreen` mode
-* `transparency` (0-100) - view details of window and desktop beneath Vim
+Typography-related:
+
+* `typeface` - name of font
+* `font-size` - point size of font
+* `linespace` (0+) - additional pixel spacing between lines
+
+Screen-related:
+
+* `fullscreen` - if 1, force a switch to fullscreen
+* `fullscreen-background-color-fix` - optional change of color of the
+  background (or border) to match text background
+* `columns` and `lines` - you’ll mostly use these to manage the height and
+  width the text area in `fullscreen` mode
+* `transparency` (0=none, 100=fully transparent) - view details of window
+  and desktop beneath Vim
+
+## GUI fullscreen capabilities
+
+thematic supports fullscreen capabilities for GUI-based Vim, including
+typeface, font-size, lines, columns, linespace, transparency and even the
+fullscreen background.
+
+Note that once invoked, thematic will override your fullscreen settings,
+specifically `fuoptions` to get better control over screen lines and columns
+and the fullscreen background.
 
 ## FAQ
 
@@ -199,6 +268,48 @@ with a narrow `textwidth`:
 autocmd FileType markdown set foldcolumn=12 textwidth=74
 ```
 
+### Q: Using MacVim, the fullscreen background color isn't working as expected. How do I change its behavior?
+
+To have the fullscreen background's color set by thematic, enter the
+following in OS X Terminal:
+
+```
+$ defaults write org.vim.MacVim MMNativeFullScreen 0
+```
+
+Or, if you prefer your fullscreen window to float against a standard
+background:
+
+```
+$ defaults write org.vim.MacVim MMNativeFullScreen 1
+```
+
+## Monospaced fonts
+
+Whether using console or GUI-based Vim, a good monospaced font can improve your
+editing experience. Many are available for free:
+
+* [Anonymous Pro](https://www.google.com/fonts/specimen/Anonymous+Pro)
+* [CosmicSansNeueMono](https://github.com/belluzj/cosmic-sans-neue)
+* [Courier Prime](http://quoteunquoteapps.com/courierprime/)
+* [Cousine](http://www.google.com/fonts/specimen/Cousine)
+* [Cutive Mono](http://www.google.com/fonts/specimen/Cutive+Mono)
+* [DejaVu Sans Mono](http://dejavu-fonts.org/wiki/Download)
+* [Droid Sans Mono](http://www.google.com/fonts/specimen/Droid+Sans+Mono)
+* [Hermit](https://pcaro.es/p/hermit/)
+* [Inconsolata](http://www.google.com/fonts/specimen/Inconsolata)
+* [Linux Libertine Mono O](http://sourceforge.net/projects/linuxlibertine/)
+* [Liberation](https://fedorahosted.org/liberation-fonts/)
+* [Luxi Mono Regular](http://www.fontsquirrel.com/fonts/Luxi-Mono)
+* [Meslo](https://github.com/andreberg/Meslo-Font)
+* [Oxygen Mono](https://www.google.com/fonts/specimen/Oxygen+Mono)
+* [PT Mono](http://www.google.com/fonts/specimen/PT+Mono)
+* [Share Tech Mono](http://www.google.com/fonts/specimen/Share+Tech+Mono)
+* [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro)
+* [Ubuntu Mono](https://www.google.com/fonts/specimen/Ubuntu+Mono)
+
+Note that you already have a few installed, such as `Menlo` on OS X.
+
 ## Related projects
 
 If this project is not to your liking, you might enjoy:
@@ -215,7 +326,6 @@ If you like this plugin, you might like these others from the same author:
 * [vim-lexical](http://github.com/reedes/vim-lexical) - Building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
 * [vim-quotable](http://github.com/reedes/vim-quotable) - extends Vim to support typographic (‘curly’) quotes
-* [vim-thematic-gui](http://github.com/reedes/vim-thematic-gui) — A GUI-based extension to the thematic plugin for Vim
 * [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better support writing prose and documentation
 
 ## Future development

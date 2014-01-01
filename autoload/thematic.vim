@@ -141,20 +141,35 @@ function! thematic#init(mode)
 
   if thematic#getThemeValue(l:th, 'sign-column-color-fix', 0)
     " Ensure the gutter matches the text background
-    hi! SignColumn guifg=fg guibg=bg ctermfg=fg ctermbg=bg
+    if has('gui_running')
+      hi! SignColumn guifg=fg guibg=bg
+    else
+      hi! SignColumn ctermfg=fg ctermbg=bg
+    endif
   endif
 
   if thematic#getThemeValue(l:th, 'diff-color-fix', 0)
     " Override diff colors
-    hi! DiffAdd    guifg=darkgreen  guibg=bg cterm=bold ctermbg=bg ctermfg=119
-    hi! DiffDelete guifg=darkorange guibg=bg cterm=bold ctermbg=bg ctermfg=167
-    hi! DiffChange guifg=darkyellow guibg=bg cterm=bold ctermbg=bg ctermfg=227
-    hi! DiffText   guifg=fg         guibg=bg cterm=none ctermbg=fg ctermfg=fg
+    if has('gui_running')
+      hi! DiffAdd    guifg=darkgreen  guibg=bg
+      hi! DiffDelete guifg=darkorange guibg=bg
+      hi! DiffChange guifg=darkyellow guibg=bg
+      hi! DiffText   guifg=fg         guibg=bg
+    else
+      hi! DiffAdd    cterm=bold ctermbg=bg ctermfg=119
+      hi! DiffDelete cterm=bold ctermbg=bg ctermfg=167
+      hi! DiffChange cterm=bold ctermbg=bg ctermfg=227
+      hi! DiffText   cterm=none ctermbg=fg ctermfg=fg
+    endif
   endif
 
   if thematic#getThemeValue(l:th, 'fold-column-color-mute', 0)
     " Ensure the fold column is blank, for non-distracted editing
-    hi! FoldColumn guifg=bg guibg=bg cterm=bold ctermbg=bg ctermfg=bg
+    if has('gui_running')
+      hi! FoldColumn guifg=bg guibg=bg
+    else
+      hi! FoldColumn cterm=bold ctermbg=bg ctermfg=bg
+    endif
   endif
 
   " ------ Set sign column for all buffers ------
@@ -197,7 +212,7 @@ function! thematic#init(mode)
 
   " ------ Set GUI-only settings ------
 
-  if has('gui_running') && exists('*thematic#gui#init')
+  if has('gui_running')
     call thematic#gui#init(l:th)
   endif
 
