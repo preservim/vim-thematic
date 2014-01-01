@@ -18,24 +18,24 @@ with a single theme that suits their needs, configuring it in their
 Or you might instead be among the users who instead configure the visual
 details of Vim to match the lighting conditions or task at hand, or even
 to suit their mood. For example, you might choose a theme that is less
-fatiguing to your eyes given the ambient lighting conditions, where you'll
-have a muted theme for a dark room and a high-contrast theme for use in
-a bright one.
+fatiguing to your eyes given the ambient lighting conditions, where
+you'll have a muted theme for a dark room and a high-contrast theme for
+use in a bright one.
 
 Writing code, you want a status bar, ruler, a hint of transparency and
-a programming font. But if you're writing an essay or screenplay, you want
-the screen stripped of all extraneous detail, with a traditional font and
-generous left and right margins.
+a programming font. But if you're writing an essay or screenplay, you
+want the screen stripped of all extraneous detail, with a traditional
+font and generous left and right margins.
 
 Managing such an multi-theme environment in Vim has traditionally been
 a hassle. The thematic plugin is intended to solve that problem,
 providing you flexibility and convenience.
 
 GUI-based Vim users can complement a colorscheme with a particular
-typeface. For example, the lightweight anti-aliased typeface like Adobe's
-_Source Code Pro ExtraLight_ may look great against a black background but
-be unreadable against a white one, so you’ll only pair it with an
-appropriate colorscheme.
+typeface. For example, the lightweight anti-aliased typeface like
+Adobe's _Source Code Pro ExtraLight_ may look great against a black
+background but be unreadable against a white one, so you’ll only pair it
+with an appropriate colorscheme.
 
 Or for a particular typeface you may want a larger
 [leading](http://en.wikipedia.org/wiki/Leading) to reduce crowding of
@@ -152,7 +152,7 @@ as your themes will be reordered alphabetically by name.
 :ThematicPrevious      " switch to the previous theme, ordered by name
 :ThematicRandom        " switch to a random theme
 :ThematicOriginal      " revert to the original theme
-:Thematic {theme_name} " load a theme by name
+:Thematic {theme_name} " load a theme by name (with tab completion)
 ```
 
 thematic does not map any keys by default, but you can easily do so in
@@ -170,7 +170,8 @@ For console or GUI-based Vim:
 * `laststatus` (0, 1, or 2) - controls the visibility of the status bar
 * `ruler` - as alternative to status bar, shows minimal position details
   in lower right
-* `colorscheme` - set the colors for all windows
+* `colorscheme` - set the colors for all windows (optional if your theme
+  name is the same as the colorscheme name)
 * `background` (dark or light) - some colorschemes can be further
   configured via background
 * `sign-column` - optional two-character gutter on left-side of window
@@ -195,10 +196,10 @@ Screen-related:
 * `fullscreen` - if 1, force a switch to fullscreen
 * `fullscreen-background-color-fix` - optional change of color of the
   background (or border) to match text background
-* `columns` and `lines` - you’ll mostly use these to manage the height and
-  width the text area in `fullscreen` mode
-* `transparency` (0=none, 100=fully transparent) - view details of window
-  and desktop beneath Vim
+* `columns` and `lines` - you’ll mostly use these to manage the height
+  and width the text area in `fullscreen` mode
+* `transparency` (0=opaque, 100=fully transparent) - view details of
+  window and desktop beneath Vim
 
 ## GUI fullscreen capabilities
 
@@ -207,8 +208,8 @@ typeface, font-size, lines, columns, linespace, transparency and even the
 fullscreen background.
 
 Note that once invoked, thematic will override your fullscreen settings,
-specifically `fuoptions` to get better control over screen lines and columns
-and the fullscreen background.
+specifically `fuoptions` to get better control over screen lines and
+columns and the fullscreen background.
 
 ## FAQ
 
@@ -242,8 +243,8 @@ set guioptions-=L   "kill left scrollbar multiple buffers
 set guioptions-=T   "kill toolbar
 ```
 
-(3) Finally, create a theme configured to your tastes. Here's an example for
-MacVim:
+(3) Finally, create a theme configured to your tastes. Here's an example
+for MacVim:
 
 ```vim
 let g:thematic#themes = {
@@ -260,10 +261,10 @@ let g:thematic#themes = {
 \ }
 ```
 
-Without GUI-based Vim, console-based emulation is trickier, as there's no
-easy way to create generous left and right margins. You can approximate it
-by switching from soft-wrap to hard line breaks with `vim-writer` and using
-with a narrow `textwidth`:
+Without GUI-based Vim, console-based emulation is trickier, as there's
+no easy way to create generous left and right margins. You can
+approximate it by switching from soft-wrap to hard line breaks with
+`vim-writer` and using with a narrow `textwidth`:
 
 ```vim
 autocmd FileType markdown set foldcolumn=12 textwidth=74
@@ -287,8 +288,8 @@ $ defaults write org.vim.MacVim MMNativeFullScreen 1
 
 ## Monospaced fonts
 
-Whether using console or GUI-based Vim, a good monospaced font can improve your
-editing experience. Many are available for free:
+Whether using console or GUI-based Vim, a good monospaced font can
+improve your editing experience. Many are available for free:
 
 * [Anonymous Pro](https://www.google.com/fonts/specimen/Anonymous+Pro)
 * [CosmicSansNeueMono](https://github.com/belluzj/cosmic-sans-neue)
