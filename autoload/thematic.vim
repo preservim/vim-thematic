@@ -138,10 +138,12 @@ function! thematic#init(mode)
   endif
 
   " ------ Fix/mute colors ------
+  
+  let l:gui_running = has('gui_running')
 
   if thematic#getThemeValue(l:th, 'sign-column-color-fix', 0)
     " Ensure the gutter matches the text background
-    if has('gui_running')
+    if l:gui_running
       hi! SignColumn guifg=fg guibg=bg
     else
       hi! SignColumn ctermfg=fg ctermbg=bg
@@ -150,7 +152,7 @@ function! thematic#init(mode)
 
   if thematic#getThemeValue(l:th, 'diff-color-fix', 0)
     " Override diff colors
-    if has('gui_running')
+    if l:gui_running
       hi! DiffAdd    guifg=darkgreen  guibg=bg
       hi! DiffDelete guifg=darkorange guibg=bg
       hi! DiffChange guifg=darkyellow guibg=bg
@@ -165,7 +167,7 @@ function! thematic#init(mode)
 
   if thematic#getThemeValue(l:th, 'fold-column-color-mute', 0)
     " Ensure the fold column is blank, for non-distracted editing
-    if has('gui_running')
+    if l:gui_running
       hi! FoldColumn guifg=bg guibg=bg
     else
       hi! FoldColumn cterm=bold ctermbg=bg ctermfg=bg
@@ -212,7 +214,7 @@ function! thematic#init(mode)
 
   " ------ Set GUI-only settings ------
 
-  if has('gui_running')
+  if l:gui_running
     call thematic#gui#init(l:th)
   endif
 
