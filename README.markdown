@@ -226,9 +226,8 @@ this plugin strenuously avoids.
 
 It works best with GUI Vim's fullscreen. A few steps are involved:
 
-(1) Install a few plugins:
+(1) Install a couple of plugins:
 
-* [vim-thematic-gui](https://github.com/reedes/vim-thematic-gui) - support GUI features in thematic
 * [vim-markdown](https://github.com/tpope/vim-markdown) - support for editing markdown
 * [vim-writer](https://github.com/reedes/vim-writer) - to configure for word processing
 
