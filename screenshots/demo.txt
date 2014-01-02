@@ -2,5 +2,5 @@ Captured with Quicktime.
 
 Processed with:
 
-$ ffmpeg -i two.mov -s 700x478 -pix_fmt rgb24 -r 10 -f gif - | \
-  gifsicle --optimize=3 --delay=3  > out.gif 
+$ ffmpeg -i two.mov -s 700x478 -pix_fmt rgb24 -vf "lutyuv=y=val*1.3" -r 10 -f gif - | \
+  gifsicle --optimize=3 --delay=3  > out.gif
