@@ -87,6 +87,7 @@ of your themes:
 ```vim
 let g:thematic#defaults = {
 \ 'airline-theme': 'jellybeans',
+\ 'background': 'dark',
 \ 'laststatus': 2,
 \ }
 ```
@@ -148,12 +149,13 @@ thematic does not map any keys by default, but you can easily do so in
 your `.vimrc` file:
 
 ```vim
-nnoremap <Leader>T <Plug>ThematicNext
+nnoremap <Leader>T :ThematicNext<CR>
+nnoremap <Leader>I :Thematic iawriter<CR>
 ```
 
 ## What theme properties can I set?
 
-For each theme you specify one or more properties.
+Many properties are available for console-only and GUI-based Vim.
 
 For console or GUI-based Vim:
 * `laststatus` (0, 1, or 2) - controls the visibility of the status bar
@@ -171,8 +173,8 @@ For console or GUI-based Vim:
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
   indicators in foldcolumn
 
-The following options are for GUI-based Vim only (they will be ignored 
-if you're running in console-based Vim):
+The following options are for GUI-based Vim only (they will be ignored if
+you're running a console-based Vim):
 
 Typography-related:
 
@@ -193,10 +195,9 @@ Screen-related:
 ## GUI fullscreen capabilities
 
 thematic supports fullscreen capabilities for GUI-based Vim, including
-typeface, font-size, lines, columns, linespace, transparency and even the
-fullscreen background.
+changing the fullscreen background to match the text background.
 
-Note that once invoked, thematic will override your fullscreen settings,
+Note that when installed, thematic will override your fullscreen settings,
 specifically `fuoptions` to get better control over screen lines and
 columns and the fullscreen background.
 
