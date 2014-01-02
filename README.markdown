@@ -66,9 +66,6 @@ let g:thematic#themes = {
 \ 'jellybeans' : { 'laststatus': 0,
 \                  'ruler': 1,
 \                },
-\ 'matrix'     : { 'colorscheme': 'base16-greenscreen',
-\                  'laststatus': 0,
-\                },
 \ 'solar_dark' : { 'colorscheme': 'solarized',
 \                  'background': 'dark',
 \                  'diff-color-fix': 1,
@@ -82,10 +79,10 @@ let g:thematic#themes = {
 ```
 
 If you don't specify a `colorscheme`, thematic will attempt to load one
-given your theme name.
+using your theme name.
 
 You can also specify a dictionary of default values, to be shared by all
-of your themes.
+of your themes:
 
 ```vim
 let g:thematic#defaults = {
@@ -94,51 +91,41 @@ let g:thematic#defaults = {
 \ }
 ```
 
-Note that an explicit setting in a theme will always override these defaults.
+Note that an explicit setting in a theme will take precedence over these
+defaults.
 
-Note also that thematic stays out of your way, ignoring any settings
-that you aren't explicitly setting through your thematic configuration.
-For example, you can `set guifont=` in your .gvimrc independent of your
-thematic configuration.
+Thematic stays out of your way, ignoring any settings that you aren't
+explicitly setting through your thematic configuration. For example, you
+can `set guifont=` in your .gvimrc independent of thematic.
 
 GUI-based Vim users have additional options available in theming. For example,
 
 ```vim
 let g:thematic#defaults = {
-...
+...other defaults...
+\ 'typeface': 'Menlo',
 \ 'font-size': 20,
+\ 'linespace': 8,
 \ 'transparency': 0,
 \ }
 ```
     
 ```vim
 let g:thematic#themes = {
-\ 'bubblegum'  : { 'typeface': 'Cutive Mono',
-\                  'linespace': 9,
-\                },
-\ 'matrix'     : { 'colorscheme': 'base16-greenscreen',
-\                  'font-size': 24,
-\                  'linespace': 9,
-\                  'typeface': 'Dot Matrix',
-\                  'transparency': 10,
+\ 'bubblegum'  : {
 \                },
 \ 'solar_dark' : { 'colorscheme': 'solarized',
-\                  ...
 \                  'typeface': 'Source Code Pro Light',
+\                  'linespace': 8,
 \                },
 \ 'solar_lite' : { 'colorscheme': 'solarized',
-\                  ...
-\                  'font-size': 20,
-\                  'linespace': 8,
 \                  'typeface': 'Source Code Pro',
+\                  'linespace': 6,
 \                },
 \ 'iawriter'   : { 'colorscheme': 'reede_light',
-\                  ...
 \                  'columns': 75,
-\                  'font-size': 20,
+\                  'font-size': 22,
 \                  'fullscreen': 1,
-\                  'linespace': 8,
-\                  'typeface': 'Menlo',
 \                },
 \ }
 ```
@@ -176,7 +163,6 @@ For console or GUI-based Vim:
   name is the same as the colorscheme name)
 * `background` (dark or light) - some colorschemes can be further
   configured via background
-* `sign-column` - optional two-character gutter on left-side of window
 * `airline-theme` - plugin for theming your status bar
 * `sign-column-color-fix` - temporarily modifies colorscheme to force
   gutter background
