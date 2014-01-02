@@ -174,23 +174,6 @@ function! thematic#init(mode)
     endif
   endif
 
-  " ------ Set sign column for all buffers ------
-
-  " Force the display of a two-column gutter for signs, etc.
-  " The sign configuration is apparently buffer-scoped, so iterate
-  " over all listed buffers to force the sign column.
-  let l:sc = thematic#getThemeValue(l:th, 'sign-column', -1)
-  if l:sc == 1
-    " TODO how to auto-refresh/disable Signify, gitgutter, etc.?
-    sign define dummy
-    let l:b_all = range(1, bufnr('$'))
-    for l:b_no in filter(l:b_all, 'buflisted(v:val)')
-      execute 'sign place 9999 line=1 name=dummy buffer=' . l:b_no
-    endfor
-  elseif l:sc == 0
-    sign unplace *
-  endif
-
   " ------ Set statusline, ruler, airline_theme ------
 
   "  These are all globally-scoped settings
