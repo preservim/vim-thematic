@@ -102,29 +102,24 @@ can `set guifont=` in your .gvimrc independent of thematic.
 GUI-based Vim users have additional options available in theming. For example,
 
 ```vim
-let g:thematic#defaults = {
-...other defaults...
-\ 'typeface': 'Menlo',
-\ 'font-size': 20,
-\ 'linespace': 8,
-\ 'transparency': 0,
-\ }
-```
-    
-```vim
 let g:thematic#themes = {
-\ 'bubblegum'  : {
+\ 'bubblegum'  : { 'typeface': 'Menlo',
+\                  'font-size': 18,
+\                  'linespace': 2,
 \                },
 \ 'solar_dark' : { 'colorscheme': 'solarized',
 \                  'typeface': 'Source Code Pro Light',
+\                  'font-size': 20,
 \                  'linespace': 8,
 \                },
 \ 'solar_lite' : { 'colorscheme': 'solarized',
 \                  'typeface': 'Source Code Pro',
+\                  'font-size': 20,
 \                  'linespace': 6,
 \                },
 \ 'iawriter'   : { 'colorscheme': 'reede_light',
 \                  'columns': 75,
+\                  'typeface': 'Menlo',
 \                  'font-size': 22,
 \                  'fullscreen': 1,
 \                },
