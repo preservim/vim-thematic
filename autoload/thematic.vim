@@ -9,6 +9,40 @@
 if exists("autoloaded_thematic") | finish | endif
 let autoloaded_thematic = 1
 
+function! s:normalColors(hi_grps)
+  call s:setColorsTo(a:hi_grps, 'Normal', 'fg', 'bg')
+endfunction
+
+function! s:invertColors(hi_grps)
+  call s:setColorsTo(a:hi_grps, 'Normal', 'bg', 'fg')
+endfunction
+
+function! s:muteColors(hi_grps)
+  call s:setColorsTo(a:hi_grps, 'Normal', 'bg', 'bg')
+endfunction
+
+function! s:setColorsTo(hi_grps, target_grp, target_fg, target_bg)
+  " modify the specified highlight groups based on another highlight group
+  if has('gui_running')
+    for l:hi_grp in a:hi_grps
+      execute 'hi! ' . l:hi_grp . ' guifg=' . a:target_fg . ' guibg=' . a:target_bg
+    endfor
+  else
+    " set the cterm colors iff colorscheme specifies fg and bg
+    " 'desert' does not, but 'bubblegum' does
+    let l:target_grp_fg = synIDattr(synIDtrans(hlID(a:target_grp)), 'fg')
+    let l:target_grp_bg = synIDattr(synIDtrans(hlID(a:target_grp)), 'bg')
+    let l:ok_fg = l:target_grp_fg !~ '^-1$\|^$'
+    let l:ok_bg = l:target_grp_bg !~ '^-1$\|^$'
+    if l:ok_fg && l:ok_bg
+      for l:hi_grp in a:hi_grps
+        let l:nu_fg = a:target_fg ==# 'fg' ? l:target_grp_fg : l:target_grp_bg
+        let l:nu_bg = a:target_bg ==# 'bg' ? l:target_grp_bg : l:target_grp_fg
+        execute 'hi! ' . l:hi_grp .  ' ctermfg=' . l:nu_fg . ' ctermbg=' . l:nu_bg
+      endfor
+    endif
+  endif
+endfunction
 
 function! s:getThemeName(mode)
   let l:avail_names = sort(keys(g:thematic#themes))
@@ -94,7 +128,7 @@ function! s:airline(th)
   endif
 endfunction
 
-function! thematic#init(mode)
+function! thematic#init(mode) abort
   if len(g:thematic#themes) == 0
     echohl WarningMsg | echo 'No themes found.' | echohl NONE
     finish
@@ -138,40 +172,39 @@ function! thematic#init(mode)
   endif
 
   " ------ Fix/mute colors ------
-  
+
   let l:gui_running = has('gui_running')
 
   if thematic#getThemeValue(l:th, 'sign-column-color-fix', 0)
-    " Ensure the gutter matches the text background
-    if l:gui_running
-      hi! SignColumn guifg=fg guibg=bg
-    else
-      hi! SignColumn ctermfg=fg ctermbg=bg
-    endif
+    " Ensure the gutter matches 'Normal' highlighting
+    call s:normalColors(['SignColumn',])
   endif
 
   if thematic#getThemeValue(l:th, 'diff-color-fix', 0)
-    " Override diff colors
+    " Override diff colors, in case the colorscheme's diff colors are awful
+    " Use also to fix sign column colors
     if l:gui_running
-      hi! DiffAdd    guifg=darkgreen  guibg=bg
-      hi! DiffDelete guifg=darkorange guibg=bg
-      hi! DiffChange guifg=darkyellow guibg=bg
-      hi! DiffText   guifg=fg         guibg=bg
+      hi! DiffAdd    guifg=DarkGreen  guibg=bg
+      hi! DiffDelete guifg=DarkRed    guibg=bg
+      hi! DiffChange guifg=DarkYellow guibg=bg
+      hi! DiffText   guifg=DarkCyan   guibg=bg
     else
-      hi! DiffAdd    cterm=bold ctermbg=bg ctermfg=119
-      hi! DiffDelete cterm=bold ctermbg=bg ctermfg=167
-      hi! DiffChange cterm=bold ctermbg=bg ctermfg=227
-      hi! DiffText   cterm=none ctermbg=fg ctermfg=fg
+      call s:normalColors(['DiffAdd','DiffDelete','DiffChange','DiffText',])
+      hi! DiffAdd    ctermfg=DarkGreen
+      hi! DiffDelete ctermfg=DarkRed
+      hi! DiffChange ctermfg=DarkYellow
+      hi! DiffText   ctermfg=DarkCyan
     endif
   endif
 
   if thematic#getThemeValue(l:th, 'fold-column-color-mute', 0)
     " Ensure the fold column is blank, for non-distracted editing
-    if l:gui_running
-      hi! FoldColumn guifg=bg guibg=bg
-    else
-      hi! FoldColumn cterm=bold ctermbg=bg ctermfg=bg
-    endif
+    call s:muteColors(['FoldColumn',])
+  endif
+
+  if thematic#getThemeValue(l:th, 'number-column-color-mute', 0)
+    " Ensure the number column is blank, for non-distracted editing
+    call s:muteColors(['LineNr', 'CursorLineNr',])
   endif
 
   " ------ Set statusline, ruler, airline_theme ------

@@ -145,7 +145,7 @@ function! s:setGuifont(gf)
 endfunction
 
 
-function! thematic#gui#setFont(th)
+function! thematic#gui#setFont(th) abort
   " attempt to preserve original font if not yet set
   if !has_key(g:thematic#original, 'typeface')
     let l:typeface = s:getTypeface(&guifont, '')
@@ -171,7 +171,7 @@ function! thematic#gui#setFont(th)
 endfunction
 
 
-function! thematic#gui#setTransparency(th)
+function! thematic#gui#setTransparency(th) abort
   let l:tr = thematic#getThemeValue(a:th, 'transparency', -1)
   if l:tr > 100
     let l:tr = 100
@@ -188,7 +188,7 @@ function! thematic#gui#setTransparency(th)
 endfunction
 
 
-function! thematic#gui#setLinespace(th)
+function! thematic#gui#setLinespace(th) abort
   let l:ls = thematic#getThemeValue(a:th, 'linespace', -1)
   if l:ls != -1
     try
@@ -202,7 +202,7 @@ function! thematic#gui#setLinespace(th)
 endfunction
 
 
-function! thematic#gui#setFullscreen(th)
+function! thematic#gui#setFullscreen(th) abort
   if has('fullscreen')
     " Because it can be jarring to see fullscreen disable,
     " we'll only enable it.
@@ -226,7 +226,7 @@ endfunction
 
 " If no explicit settings on lines and columns in
 " either the theme or the defaults, then leave alone.
-function! thematic#gui#setColumnsAndLines(th)
+function! thematic#gui#setColumnsAndLines(th) abort
   let l:columns = thematic#getThemeValue(a:th, 'columns', 0)
   if l:columns > 0
     execute 'set columns=' . l:columns

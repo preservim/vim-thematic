@@ -162,11 +162,13 @@ For console or GUI-based Vim:
   configured via background
 * `airline-theme` - plugin for theming your status bar
 * `sign-column-color-fix` - temporarily modifies colorscheme to force
-  gutter background
+  gutter background to match Normal background
 * `diff-color-fix` - temporarily modifies colorscheme to force diff
-  character color
+  character color to a standard red/green/yellow
 * `fold-column-color-mute` - temporarily modifies colorscheme to hide
-  indicators in foldcolumn
+  indicators, matching Normal text background
+* `number-column-color-mute` - temporarily modifies colorscheme to hide
+  numbers, matching Normal text background
 
 The following options are for GUI-based Vim only (they will be ignored if
 you're running a console-based Vim):
@@ -181,7 +183,7 @@ Screen-related:
 
 * `fullscreen` - if 1, force a switch to fullscreen
 * `fullscreen-background-color-fix` - optional change of color of the
-  background (or border) to match text background
+  background (or border) to match Normal text background
 * `columns` and `lines` - you’ll mostly use these to manage the height
   and width the text area in `fullscreen` mode
 * `transparency` (0=opaque, 100=fully transparent) - view details of

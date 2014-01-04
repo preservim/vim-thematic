@@ -13,7 +13,7 @@ let g:loaded_thematic_gui = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! thematic#gui#init(...)
+function! thematic#gui#init(...) abort
   let l:th = a:0 ? a:1 : {}
   call thematic#gui#setFont(l:th)
   call thematic#gui#setTransparency(l:th)
@@ -22,7 +22,7 @@ function! thematic#gui#init(...)
   call thematic#gui#setColumnsAndLines(l:th)
 endfunction
 
-function! thematic#gui#initFullscreen()
+function! thematic#gui#initFullscreen() abort
   " Take control of fullscreen behavior from Vim, specifically to
   " override its default behavior of maximizing columns and lines
   " in fullscreen Vim.
