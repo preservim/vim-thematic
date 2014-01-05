@@ -314,7 +314,8 @@ If you like this plugin, you might like these others from the same author:
 * [vim-lexical](http://github.com/reedes/vim-lexical) - Building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
 * [vim-quotable](http://github.com/reedes/vim-quotable) - extends Vim to support typographic (‘curly’) quotes
-* [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better support writing prose and documentation
+* [vim-pencil](http://github.com/reedes/vim-pencil) - Extending Vim to better support writing prose and documentation
+* [vim-colors-pencil](http://github.com/reedes/vim-colors-pencil) — A color scheme for Vim inspired by IA Writer
 
 ## Future development
 
