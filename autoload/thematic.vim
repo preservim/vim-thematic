@@ -151,7 +151,16 @@ function! thematic#init(mode) abort
     let l:th = get(g:thematic#themes, l:theme_name, {})
   endif
 
-  " ------ Set colorscheme and background ------
+  " ------ Set background and colorscheme ------
+
+  " Use the original background, if not explicit and no default.
+  " Note that we're setting background BEFORE the colorscheme,
+  " because many colorschemes will deliberately override it.
+  " And some, like solarized, will dynamically adjust to it.
+  let l:bg = thematic#getThemeValue(l:th, 'background', '')
+  if (l:bg == 'light' || l:bg == 'dark') && &background != l:bg
+    execute 'set background=' . l:bg
+  endif
 
   " assume the colorscheme matches the theme name if not explicit
   let l:cs = get(l:th, 'colorscheme', l:theme_name)
@@ -164,12 +173,6 @@ function! thematic#init(mode) abort
       execute 'colorscheme ' . l:cs
     endif
   endtry
-
-  " use the original background, if not explicit and no default
-  let l:bg = thematic#getThemeValue(l:th, 'background', '')
-  if (l:bg == 'light' || l:bg == 'dark') && &background != l:bg
-    execute 'set background=' . l:bg
-  endif
 
   " ------ Fix/mute colors ------
 
