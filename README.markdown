@@ -216,7 +216,7 @@ It works best with GUI Vim's fullscreen. A few steps are involved:
 (1) Install a couple of plugins:
 
 * [vim-markdown](https://github.com/tpope/vim-markdown) - support for editing markdown
-* [vim-writer](https://github.com/reedes/vim-writer) - to configure for word processing
+* [vim-pencil](https://github.com/reedes/vim-pencil) - to configure for word processing
 
 (2) Edit your `.gvimrc` to disable the tool bar, etc.
 
@@ -250,7 +250,7 @@ let g:thematic#themes = {
 Without GUI-based Vim, console-based emulation is trickier, as there's
 no easy way to create generous left and right margins. You can
 approximate it by switching from soft-wrap to hard line breaks with
-`vim-writer` and using with a narrow `textwidth`:
+`vim-pencil` and using with a narrow `textwidth`:
 
 ```vim
 autocmd FileType markdown set foldcolumn=12 textwidth=74
