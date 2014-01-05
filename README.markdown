@@ -4,6 +4,8 @@
 
 ![demo](screenshots/demo.gif)
 
+## Features
+
 * Groups global settings (like colorscheme) into ‘themes’
 * Stays out of your way, except where you want it
 * No predefined key mappings to interfere with your other mappings
