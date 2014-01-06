@@ -140,7 +140,8 @@ your `.vimrc` file:
 
 ```vim
 nnoremap <Leader>T :ThematicNext<CR>
-nnoremap <Leader>I :Thematic iawriter<CR>
+nnoremap <Leader>S :Thematic solar_dark<CR>
+nnoremap <Leader>L :Thematic solar_lite<CR>
 ```
 
 ## What theme properties can I set?
