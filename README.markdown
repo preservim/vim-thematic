@@ -118,11 +118,13 @@ let g:thematic#themes = {
 \                  'font-size': 20,
 \                  'linespace': 6,
 \                },
-\ 'iawriter'   : { 'colorscheme': 'reede_light',
+\ 'iawriter'   : { 'background': 'light',
 \                  'columns': 75,
-\                  'typeface': 'Menlo',
-\                  'font-size': 22,
+\                  'font-size': 20,
 \                  'fullscreen': 1,
+\                  'laststatus': 0,
+\                  'linespace': 8,
+\                  'typeface': 'Cousine',
 \                },
 \ }
 ```
@@ -245,22 +247,22 @@ for MacVim:
 
 ```vim
 let g:thematic#themes = {
-\ 'pencil'      :{ 'background': 'light',
+\ 'iawriter'   : { 'background': 'light',
 \                  'columns': 75,
 \                  'font-size': 20,
 \                  'fullscreen': 1,
 \                  'laststatus': 0,
 \                  'linespace': 8,
-\                  'typeface': 'Menlo',
+\                  'typeface': 'Cousine',
 \                },
 ...
 \ }
 ```
 
 Non-GUI terminal-based emulation is trickier, as there's no easy way to
-create generous left and right margins. You can approximate it by
-switching from soft-wrap to hard line breaks with `vim-pencil` and using
-with a narrow `textwidth`:
+create a generous right margin. You can approximate it by switching from
+soft-wrap to hard line breaks with `vim-pencil` and using with a narrow
+`textwidth`:
 
 ```vim
 autocmd FileType markdown set foldcolumn=12 textwidth=74
@@ -306,7 +308,7 @@ improve your editing experience. Many are available to download for free:
 * [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro)
 * [Ubuntu Mono](https://www.google.com/fonts/specimen/Ubuntu+Mono)
 
-Note that you already have a few installed, such as `Menlo` on OS X.
+Note that you already have a few installed, such as ‘Menlo’ on OS X.
 
 ## Related projects
 
