@@ -212,6 +212,9 @@ windows. Those are best set using the `autocmd FileType` feature in Vim.
 In addition, settings like `textwidth` will modify your documents, which
 this plugin strenuously avoids.
 
+See the [vim-pencil](http://github.com/reedes/vim-pencil) plugin by the
+same author to manage `textwidth` etc.
+
 ### Q: How can I configure Vim to emulate markdown editors like IA Writer?
 
 It works best with fullscreen in a GUI-based Vim. A few steps are
