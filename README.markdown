@@ -222,8 +222,6 @@ involved:
 
 (1) Install a couple plugins and a suitable colorscheme:
 
-* [vim-markdown](https://github.com/tpope/vim-markdown) - support for
-  editing markdown text
 * [vim-pencil](https://github.com/reedes/vim-pencil) - to configure
   buffers for word processing
 * [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil) - an
@@ -320,13 +318,22 @@ If this project is not to your liking, you might enjoy:
 
 ## See also
 
-If you like this plugin, you might like these others from the same author:
+If you find this plugin useful, you may want to check out these others by
+the same author:
 
-* [vim-lexical](http://github.com/reedes/vim-lexical) - Building on Vim’s spell-check and thesaurus/dictionary completion
-* [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
-* [vim-quotable](http://github.com/reedes/vim-quotable) - extends Vim to support typographic (‘curly’) quotes
-* [vim-pencil](http://github.com/reedes/vim-pencil) - Rethinking Vim as a tool for writers
-* [vim-colors-pencil](http://github.com/reedes/vim-colors-pencil) — A color scheme for Vim inspired by IA Writer
+* [vim-colors-pencil][cp] — Color scheme for Vim inspired by IA Writer
+* [vim-lexical][lx] - Building on Vim’s spell-check and thesaurus/dictionary completion
+* [vim-litecorrect][lc] - Lightweight auto-correction for Vim
+* [vim-pencil][pn] - Rethinking Vim as a tool for writers
+* [vim-quotable][qu] - Extends Vim to support typographic (‘curly’) quotes
+* [vim-wordy][wo] - Uncovering potential usage problems in writing 
+
+[cp]: http://github.com/reedes/vim-colors-pencil
+[lx]: http://github.com/reedes/vim-lexical
+[lc]: http://github.com/reedes/vim-litecorrect
+[pn]: http://github.com/reedes/vim-pencil
+[qu]: http://github.com/reedes/vim-quotable
+[wo]: http://github.com/reedes/vim-wordy
 
 ## Future development
 
