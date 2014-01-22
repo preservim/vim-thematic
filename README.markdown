@@ -137,9 +137,9 @@ can `set guifont=` in your .gvimrc independent of _thematic_.
 
 ### Setting an initial theme
 
-By default, _thematic_ isn’t active when Vim starts up.
+By default, _thematic_ doesn’t initialize a theme when you start Vim.
 
-But In your `.vimrc` you can set an initial theme for Vim to load:
+But you can have it do so by specifying a theme to load in your `.vimrc`:
 
 ```vim
 let g:thematic#theme_name = 'pencil_dark'
