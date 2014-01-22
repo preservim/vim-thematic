@@ -228,15 +228,12 @@ screen lines and columns and the fullscreen background.
 
 ### Q: I want to set `cursorline`, `wrap`, `textwidth`, `foldcolumn`, etc. in my themes.
 
-_thematic_ focuses exclusively on global settings. The settings above are
-not globally-scoped but are instead scoped to individual buffers and
-windows. Those are best set using the `autocmd FileType` feature in Vim.
-
-In addition, settings like `textwidth` will modify your documents, which
-this plugin strenuously avoids.
-
-See the [vim-pencil](http://github.com/reedes/vim-pencil) plugin by the
-same author to manage `textwidth` etc.
+At present, _thematic_ focuses exclusively on global settings. The 
+settings above are not globally-scoped but are instead scoped to 
+individual buffers and windows. Until we determine a good approach to 
+support these 'lesser' scoped settings, you can set them for all
+buffers via your `.vimrc` or by file type using the `autocmd FileType` 
+feature in Vim.
 
 ### Q: How can I configure Vim to emulate markdown editors like IA Writer?
 
