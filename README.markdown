@@ -67,23 +67,25 @@ let g:thematic#themes = {
 \ 'jellybeans' : { 'laststatus': 0,
 \                  'ruler': 1,
 \                },
-\ 'solar_dark' : { 'colorscheme': 'solarized',
-\                  'background': 'dark',
-\                  'diff-color-fix': 1,
-\                  'sign-column-color-fix': 1,
+\ 'pencil_dark' :{'colorscheme': 'pencil',
+\                 'background': 'dark',
+\                 'airline-theme': 'badwolf',
+\                 'ruler': 1,
 \                },
-\ 'solar_lite' : { 'colorscheme': 'solarized',
-\                  'background': 'light',
-\                  'sign-column-color-fix': 1,
+\ 'pencil_lite' :{'colorscheme': 'pencil',
+\                 'background': 'light',
+\                 'airline-theme': 'light',
+\                 'ruler': 1,
 \                },
 \ }
 ```
 
-If you don't specify a `colorscheme`, _thematic_ will attempt to load one
-using your theme name.
+Use a string of your choice for the theme name. Note that If you don't
+specify a `colorscheme`, _thematic_ will attempt to load one using your
+theme name.
 
-You can also specify a dictionary of default values, to be shared by all
-of your themes:
+To curb redundancy among your themes, you can specify a dictionary of
+default values, to be shared by all of your themes:
 
 ```vim
 let g:thematic#defaults = {
@@ -96,37 +98,58 @@ let g:thematic#defaults = {
 Note that an explicit setting in a theme will take precedence over these
 defaults.
 
-_thematic_ stays out of your way, ignoring any settings that you aren't
-explicitly setting through your _thematic_ configuration. For example, you
-can `set guifont=` in your .gvimrc independent of _thematic_.
-
 GUI-based Vim users have additional options available in theming. For example,
 
 ```vim
 let g:thematic#themes = {
 \ 'bubblegum'  : { 'typeface': 'Menlo',
 \                  'font-size': 18,
+\                  'transparency': 10,
 \                  'linespace': 2,
 \                },
-\ 'solar_dark' : { 'colorscheme': 'solarized',
-\                  'typeface': 'Source Code Pro Light',
+\ 'pencil_dark' :{ 'colorscheme': 'pencil',
 \                  'background': 'dark',
+\                  'airline-theme': 'badwolf',
+\                  'ruler': 1,
+\                  'laststatus': 0,
+\                  'typeface': 'Source Code Pro Light',
 \                  'font-size': 20,
+\                  'transparency': 10,
 \                  'linespace': 8,
 \                },
-\ 'solar_lite' : { 'colorscheme': 'solarized',
-\                  'typeface': 'Source Code Pro',
+\ 'pencil_lite' :{ 'colorscheme': 'pencil',
 \                  'background': 'light',
+\                  'airline-theme': 'light',
+\                  'laststatus': 0,
+\                  'ruler': 1,
+\                  'typeface': 'Source Code Pro',
+\                  'fullscreen': 1,
+\                  'transparency': 0,
 \                  'font-size': 20,
 \                  'linespace': 6,
 \                },
 \ }
 ```
 
+_thematic_ stays out of your way, ignoring any settings that you aren't
+explicitly setting through your _thematic_ configuration. For example, you
+can `set guifont=` in your .gvimrc independent of _thematic_.
+
+### Setting an initial theme
+
+By default, _thematic_ isn’t active when Vim starts up.
+
+But In your `.vimrc` you can set an initial theme for Vim to load:
+
+```vim
+let g:thematic#theme_name = 'pencil_dark'
+```
+
 ### Commands
 
-Running `:ThematicFirst` invokes _thematic_ and chooses the first theme.
-Note that your themes will be ordered alphabetically by name.
+Commands can be used to navigate through your available themes. For
+instance, running `:ThematicFirst` invokes _thematic_ and chooses the
+first theme, alphabetically.
 
 ```vim
 :ThematicFirst         " switch to the first theme, ordered by name
@@ -142,11 +165,11 @@ your `.vimrc` file:
 
 ```vim
 nnoremap <Leader>T :ThematicNext<CR>
-nnoremap <Leader>S :Thematic solar_dark<CR>
-nnoremap <Leader>L :Thematic solar_lite<CR>
+nnoremap <Leader>D :Thematic pencil_dark<CR>
+nnoremap <Leader>L :Thematic pencil_lite<CR>
 ```
 
-## What theme properties can I set?
+### What theme properties can I set?
 
 Many properties are available for terminal-only and GUI-based Vim.
 
@@ -160,8 +183,8 @@ For terminal or GUI-based Vim:
   details in lower right
 * `colorscheme` ('pencil', e.g.) - set the colors for all windows
   (optional if your theme name is the same as the colorscheme name)
-* `background` ('dark' or 'light') - colorschemes like solarized can be
-  further configured via background
+* `background` ('dark' or 'light') - colorschemes like pencil and
+  solarized can be further configured via background
 * `airline-theme` ('jellybeans', e.g.) - plugin for theming your status
   bar
 * `sign-column-color-fix` (0 or 1) - temporarily modifies colorscheme to
@@ -220,7 +243,8 @@ same author to manage `textwidth` etc.
 It works best with fullscreen in a GUI-based Vim. A few steps are
 involved:
 
-(1) Install a couple plugins and a suitable colorscheme:
+(1) Install a word processing plugin like `pencil` and a suitable
+colorscheme:
 
 * [vim-pencil](https://github.com/reedes/vim-pencil) - to configure
   buffers for word processing
@@ -238,8 +262,7 @@ set guioptions-=L   "kill left scrollbar multiple buffers
 set guioptions-=T   "kill toolbar
 ```
 
-(3) Finally, create a theme configured to your tastes. Here's an example
-for MacVim:
+(3) Finally, create a theme configured to your tastes:
 
 ```vim
 let g:thematic#themes = {
@@ -319,15 +342,16 @@ If this project is not to your liking, you might enjoy:
 ## See also
 
 If you find this plugin useful, you may want to check out these others by
-the same author:
+[@reedes][re]:
 
-* [vim-colors-pencil][cp] — Color scheme for Vim inspired by IA Writer
-* [vim-lexical][lx] - Building on Vim’s spell-check and thesaurus/dictionary completion
-* [vim-litecorrect][lc] - Lightweight auto-correction for Vim
-* [vim-pencil][pn] - Rethinking Vim as a tool for writers
-* [vim-quotable][qu] - Extends Vim to support typographic (‘curly’) quotes
-* [vim-wordy][wo] - Uncovering potential usage problems in writing 
+* [vim-colors-pencil][cp] - color scheme for Vim inspired by IA Writer
+* [vim-lexical][lx] - building on Vim’s spell-check and thesaurus/dictionary completion
+* [vim-litecorrect][lc] - lightweight auto-correction for Vim
+* [vim-pencil][pn] - rethinking Vim as a tool for writers
+* [vim-quotable][qu] - extends Vim to support typographic (‘curly’) quotes
+* [vim-wordy][wo] - uncovering usage problems in writing
 
+[re]: http://github.com/reedes
 [cp]: http://github.com/reedes/vim-colors-pencil
 [lx]: http://github.com/reedes/vim-lexical
 [lc]: http://github.com/reedes/vim-litecorrect

@@ -13,8 +13,6 @@ let g:loaded_thematic = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-let g:thematic#theme_name = ''
-
 " Preserve original settings
 
 let g:thematic#original = {}
@@ -72,6 +70,16 @@ noremap <silent> <Plug>ThematicNext     :ThematicNext<CR>
 noremap <silent> <Plug>ThematicPrevious :ThematicPrevious<CR>
 noremap <silent> <Plug>ThematicRandom   :ThematicRandom<CR>
 noremap <silent> <Plug>ThematicOriginal :ThematicOriginal<CR>
+
+if exists('g:thematic#theme_name')
+  " support an initial theme when starting Vim
+  augroup thematic_startup
+    autocmd!
+    autocmd VimEnter * call thematic#init(g:thematic#theme_name)
+  augroup END
+else
+  let g:thematic#theme_name = ''
+endif
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
