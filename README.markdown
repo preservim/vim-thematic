@@ -310,19 +310,19 @@ Whether using terminal or GUI-based Vim, a good monospaced font can
 improve your editing experience. You already have a few installed (such
 as Menlo on OS X.) Many more are available to download for free:
 
-* [CosmicSansNeueMono](https://github.com/belluzj/cosmic-sans-neue)
+* [CosmicSansNeueMono](https://github.com/belluzj/cosmic-sans-neue) (2 weights)
 * [Cutive Mono](http://www.google.com/fonts/specimen/Cutive+Mono) (serif)
 * [Droid Sans Mono](http://www.google.com/fonts/specimen/Droid+Sans+Mono)
 * [Hermit](https://pcaro.es/p/hermit/)
-* [Inconsolata](http://www.google.com/fonts/specimen/Inconsolata)
+* [Inconsolata](http://www.google.com/fonts/specimen/Inconsolata) (2 weights)
 * [Linux Libertine Mono O](http://sourceforge.net/projects/linuxlibertine/) (serif)
 * [Meslo](https://github.com/andreberg/Meslo-Font)
 * [Oxygen Mono](https://www.google.com/fonts/specimen/Oxygen+Mono)
 * [PT Mono](http://www.google.com/fonts/specimen/PT+Mono)
 * [Share Tech Mono](http://www.google.com/fonts/specimen/Share+Tech+Mono)
-* [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro)
+* [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) (7 weights)
 
-The following collections feature  **bold** and *italic* variations, 
+The following collections feature **bold** and *italic* variations, 
 to make the most of colorschemes that use them:
 
 * [Anonymous Pro](https://www.google.com/fonts/specimen/Anonymous+Pro) (serif)
