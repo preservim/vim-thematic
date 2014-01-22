@@ -7,6 +7,7 @@
 ## Features
 
 * Groups global settings (like colorscheme, ruler, etc.) into ‘themes’
+* Pure Vimscript with no dependencies
 * Stays out of your way, except where you want it
 * Integrates with [airline](https://github.com/bling/vim-airline)
 * Support for GUI-based Vim includes: font, linespace, fullscreen,
@@ -39,10 +40,6 @@ typeface. For example, the lightweight anti-aliased typeface like
 Adobe's _Source Code Pro ExtraLight_ may look great against a black
 background but be unreadable against a white one, so you’ll only pair it
 with an appropriate colorscheme.
-
-Or for a particular typeface you may want a larger
-[leading](http://en.wikipedia.org/wiki/Leading) to reduce crowding of
-lines. See the `linespace` option.
 
 ## Requirements
 
@@ -80,9 +77,9 @@ let g:thematic#themes = {
 \ }
 ```
 
-Use a string of your choice for the theme name. Note that If you don't
-specify a `colorscheme`, _thematic_ will attempt to load one using your
-theme name.
+Name your themes as you wish. Note that if you don't specify a 
+`colorscheme` property, _thematic_ will attempt to load one using your 
+theme name. (See bubblegum and jellybeans example above.)
 
 To curb redundancy among your themes, you can specify a dictionary of
 default values, to be shared by all of your themes:
@@ -152,12 +149,11 @@ instance, running `:ThematicFirst` invokes _thematic_ and chooses the
 first theme, alphabetically.
 
 ```vim
+:Thematic {theme_name} " load a theme by name (with tab completion)
 :ThematicFirst         " switch to the first theme, ordered by name
 :ThematicNext          " switch to the next theme, ordered by name
 :ThematicPrevious      " switch to the previous theme, ordered by name
 :ThematicRandom        " switch to a random theme
-:ThematicOriginal      " revert to the original theme
-:Thematic {theme_name} " load a theme by name (with tab completion)
 ```
 
 _thematic_ does not map any keys by default, but you can easily do so in
@@ -211,7 +207,7 @@ Screen-related:
 * `fullscreen-background-color-fix` (0 or 1) - optional change of color of
   the background (or border) to match Normal text background
 * `columns` (1+) and `lines` (1+) - typically used to manage the height
-  and width the text area in `fullscreen` mode
+  and width of the text area in `fullscreen` mode
 * `transparency` (0=opaque, 100=fully transparent) - view details of
   window and desktop beneath Vim
 
@@ -219,6 +215,10 @@ Screen-related:
 
 _thematic_ supports fullscreen capabilities for GUI-based Vim, including
 changing the fullscreen background to match the text background.
+
+By design, once enabled, _thematic_ won't disable fullscreen, as it erodes
+the user experience. You can still disable manually per the standard key 
+combination.
 
 Note that when installed on a GUI-based Vim, _thematic_ will override the
 fullscreen settings, specifically `fuoptions` to get better control over
@@ -332,15 +332,6 @@ to make the most of colorschemes that use them:
 * [Liberation](https://fedorahosted.org/liberation-fonts/)
 * [Luxi Mono Regular](http://www.fontsquirrel.com/fonts/Luxi-Mono) (serif)
 * [Ubuntu Mono](https://www.google.com/fonts/specimen/Ubuntu+Mono)
-
-## Related projects
-
-If this project is not to your liking, you might enjoy:
-
-* [vim-ultimate-colorscheme-utility](https://github.com/biskark/vim-ultimate-colorscheme-utility)
-* [stylish](https://github.com/mislav/stylish.vim)
-* [vim-session](https://github.com/xolox/vim-session)
-* [vim-obsession](https://github.com/tpope/vim-obsession)
 
 ## See also
 
