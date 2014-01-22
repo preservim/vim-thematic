@@ -235,6 +235,9 @@ support these 'lesser' scoped settings, you can set them for all
 buffers via your `.vimrc` or by file type using the `autocmd FileType` 
 feature in Vim.
 
+Settings that actively modify your files, such as `textwidth`, aren't
+likely to ever be part of _thematic_.
+
 ### Q: How can I configure Vim to emulate markdown editors like IA Writer?
 
 It works best with fullscreen in a GUI-based Vim. A few steps are
