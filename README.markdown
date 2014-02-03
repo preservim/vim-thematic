@@ -217,8 +217,11 @@ _thematic_ supports fullscreen capabilities for GUI-based Vim, including
 changing the fullscreen background to match the text background.
 
 By design, once enabled, _thematic_ won't disable fullscreen, as it erodes
-the user experience. You can still disable manually per the standard key 
-combination.
+the user experience. You can still disable manually per the command:
+
+```
+:set nofullscreen
+```
 
 Note that when installed on a GUI-based Vim, _thematic_ will override the
 fullscreen settings, specifically `fuoptions` to get better control over
