@@ -131,7 +131,7 @@ endfunction
 function! thematic#init(mode) abort
   if len(g:thematic#themes) == 0
     echohl WarningMsg | echo 'No themes found.' | echohl NONE
-    finish
+    return
   endif
 
   " attempt to preserve original colorscheme and its background
