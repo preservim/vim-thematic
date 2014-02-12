@@ -66,7 +66,7 @@ function! s:getSize(font, fallback)
     " Add zero to convert to integer.
     let l:size = 0 + substitute(l:decodedFont, s:regex, '\2', '')
   else
-    let l:size = 0 + fallback
+    let l:size = 0 + a:fallback
   endif
   return l:size
 endfunction
