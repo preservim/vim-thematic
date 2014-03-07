@@ -313,7 +313,7 @@ Whether using terminal or GUI-based Vim, a good monospaced font can
 improve your editing experience. You already have a few installed (such
 as Menlo on OS X.) Many more are available to download for free:
 
-* [CosmicSansNeueMono](https://github.com/belluzj/cosmic-sans-neue) (2 weights)
+* [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans) (2 weights, formerly CosmicSansNeueMono)
 * [Cutive Mono](http://www.google.com/fonts/specimen/Cutive+Mono) (serif)
 * [Droid Sans Mono](http://www.google.com/fonts/specimen/Droid+Sans+Mono)
 * [Hermit](https://pcaro.es/p/hermit/)
