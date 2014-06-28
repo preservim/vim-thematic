@@ -2,7 +2,7 @@
 
 > Conveniently manage Vim’s appearance to suit your task and environment
 
-![demo](screenshots/demo.gif)
+![demo](http://i.imgur.com/xfx69v3.gif)
 
 ## Features
 
