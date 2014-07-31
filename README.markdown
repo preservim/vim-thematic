@@ -307,6 +307,25 @@ background:
 $ defaults write org.vim.MacVim MMNativeFullScreen 1
 ```
 
+### Q: How can I apply my own custom highlights?
+
+_thematic_ doesn't yet support theme-specific customization beyond the `-fix` 
+and `-mute` options mentioned above, but you can ensure that custom highlights 
+are used in your `.vimrc`, for example:
+
+```vim
+augroup MyCustomHighlights
+  autocmd!
+  autocmd colorscheme *
+   \ highlight SpellBad   gui=bold guibg=#faa |
+   \ highlight SpellCap   gui=bold guibg=#faf |
+   \ highlight SpellRare  gui=bold guibg=#aff |
+   \ highlight SpellLocal gui=bold guibg=#ffa
+augroup END
+```
+
+This will apply across all themes, as well as manual colorscheme changes.
+
 ## Monospaced fonts
 
 Whether using terminal or GUI-based Vim, a good monospaced font can
