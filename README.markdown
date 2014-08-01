@@ -216,8 +216,11 @@ Screen-related:
 _thematic_ supports fullscreen capabilities for GUI-based Vim, including
 changing the fullscreen background to match the text background.
 
-By design, once enabled, _thematic_ won't disable fullscreen, as it erodes
-the user experience. You can still disable manually per the command:
+### Disabling fullscreen
+
+By design, once enabled, _thematic_ won't disable fullscreen, as it can
+erode the user experience. You can still disable manually per the
+command:
 
 ```
 :set nofullscreen
@@ -226,6 +229,21 @@ the user experience. You can still disable manually per the command:
 Note that when installed on a GUI-based Vim, _thematic_ will override the
 fullscreen settings, specifically `fuoptions` to get better control over
 screen lines and columns and the fullscreen background.
+
+### Narrow and Widen
+
+To narrow and widen the visible screen area _without_ changing the font
+size, _thematic_ provides a couple of handy commands you can map to keys
+of your choice. For example, to map this feature to the `Command-9` and
+`Command-0` keys in MacVim, add to your `.gvimrc`:
+
+```vim
+map <silent> <D-9> <Plug>ThematicNarrow
+map <silent> <D-0> <Plug>ThematicWiden
+```
+
+This is especially useful in fullscreen mode to adjust the side margins.
+It also complements the `<D-->` and `<D-=>` to adjust font size.
 
 ## FAQ
 
@@ -291,6 +309,9 @@ soft-wrap to hard line breaks with `vim-pencil` and using with a narrow
 autocmd FileType markdown set foldcolumn=12 textwidth=74
 ```
 
+See the “Narrow and Widen” feature above to adjust the side margins
+interactively.
+
 ### Q: Using MacVim, the fullscreen background color isn't working as expected. How do I change its behavior?
 
 To have the fullscreen background's color set by _thematic_, enter the
@@ -325,6 +346,20 @@ augroup END
 ```
 
 This will apply across all themes, as well as manual colorscheme changes.
+
+### Q: In certain cases, the screen doesn’t properly redraw. Can you fix this?
+
+You have encountered an outstanding bug that hasn’t yet been diagnosed and
+fixed. In the meantime, set up a handy key to force a redraw when the
+redraw does not occur. In your `.vimrc`:
+
+```vim 
+" <c-l> to clear the highlight, as well as redraw the screen
+noremap <silent> <C-l> :<C-u>nohlsearch<cr><C-l>
+inoremap <silent> <C-l> <C-o>:nohlsearch<cr>
+```
+
+If you can fix this problem, a pull request would be welcome.
 
 ## Monospaced fonts
 
@@ -384,6 +419,7 @@ If you find this plugin useful, you may want to check out these others by
 ## Future development
 
 If you’ve spotted a problem or have an idea on improving this plugin,
-please post it to the github project issue page.
+please post it to the github project issue page. Pull requests are
+welcome.
 
 <!-- vim: set tw=74 :-->

@@ -61,6 +61,7 @@ command -nargs=0 ThematicOriginal call thematic#init('#original')
 
 " Plugin mappings
 
+" TODO support resizing while in virtual mode
 noremap <silent> <Plug>ThematicNarrow :ThematicNarrow<CR>
 noremap <silent> <Plug>ThematicWiden  :ThematicWiden<CR>
 
