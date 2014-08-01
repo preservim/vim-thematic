@@ -176,7 +176,7 @@ function! thematic#gui#setTransparency(th) abort
   if l:tr > 100
     let l:tr = 100
   endif
-  if l:tr > 0
+  if l:tr >= 0
     try
       execute 'set transparency=' . l:tr
     catch
