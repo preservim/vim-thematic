@@ -243,7 +243,8 @@ map <silent> <D-0> <Plug>ThematicWiden
 ```
 
 This is especially useful in fullscreen mode to adjust the side margins.
-It also complements the `<D-->` and `<D-=>` to adjust font size.
+It also complements `Command-Minus` and `Command-Equals` to adjust font 
+size.
 
 ## FAQ
 
