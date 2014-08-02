@@ -329,6 +329,9 @@ background:
 $ defaults write org.vim.MacVim MMNativeFullScreen 1
 ```
 
+Note: this latter command may not work as intended for Yosemite. (Waiting
+to test on official Yosemite release before filing MacVim bug.)
+
 ### Q: How can I apply my own custom highlights?
 
 _thematic_ doesn't yet support theme-specific customization beyond the `-fix` 
