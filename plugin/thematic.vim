@@ -19,7 +19,12 @@ let g:thematic#original = {}
 let g:thematic#original.laststatus = &laststatus
 let g:thematic#original.ruler = &ruler
 if has('fullscreen')
-  call thematic#gui#initFullscreen()
+  try
+    call thematic#gui#initFullscreen()
+  catch /E117/
+    " This is happening during BundleUpdate in Vundle on first load.
+    " Unsure how best to fix.
+  endtry
 endif
 
 " Defaults
