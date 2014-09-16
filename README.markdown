@@ -77,8 +77,8 @@ let g:thematic#themes = {
 \ }
 ```
 
-Name your themes as you wish. Note that if you don't specify a 
-`colorscheme` property, _thematic_ will attempt to load one using your 
+Name your themes as you wish. Note that if you don't specify a
+`colorscheme` property, _thematic_ will attempt to load one using your
 theme name. (See bubblegum and jellybeans example above.)
 
 To curb redundancy among your themes, you can specify a dictionary of
@@ -238,23 +238,25 @@ of your choice. For example, to map this feature to the `Command-9` and
 `Command-0` keys in MacVim, add to your `.gvimrc`:
 
 ```vim
-map <silent> <D-9> <Plug>ThematicNarrow
-map <silent> <D-0> <Plug>ThematicWiden
+noremap <silent> <D-9> :<C-u>ThematicNarrow<cr>
+noremap <silent> <D-0> :<C-u>ThematicWiden<cr>
+inoremap <silent> <D-9> <C-o>:ThematicNarrow<cr>
+inoremap <silent> <D-0> <C-o>:ThematicWiden<cr>
 ```
 
 This is especially useful in fullscreen mode to adjust the side margins.
-It also complements `Command-Minus` and `Command-Equals` to adjust font 
+It also complements `Command-Minus` and `Command-Equals` to adjust font
 size.
 
 ## FAQ
 
 ### Q: I want to set `cursorline`, `wrap`, `textwidth`, `foldcolumn`, etc. in my themes.
 
-At present, _thematic_ focuses exclusively on global settings. The 
-settings above are not globally-scoped but are instead scoped to 
-individual buffers and windows. Until we determine a good approach to 
+At present, _thematic_ focuses exclusively on global settings. The
+settings above are not globally-scoped but are instead scoped to
+individual buffers and windows. Until we determine a good approach to
 support these 'lesser' scoped settings, you can set them for all
-buffers via your `.vimrc` or by file type using the `autocmd FileType` 
+buffers via your `.vimrc` or by file type using the `autocmd FileType`
 feature in Vim.
 
 Settings that actively modify your files, such as `textwidth`, aren't
@@ -334,8 +336,8 @@ to test on official Yosemite release before filing MacVim bug.)
 
 ### Q: How can I apply my own custom highlights?
 
-_thematic_ doesn't yet support theme-specific customization beyond the `-fix` 
-and `-mute` options mentioned above, but you can ensure that custom highlights 
+_thematic_ doesn't yet support theme-specific customization beyond the `-fix`
+and `-mute` options mentioned above, but you can ensure that custom highlights
 are used in your `.vimrc`, for example:
 
 ```vim
@@ -357,7 +359,7 @@ You have encountered an outstanding bug that hasn’t yet been diagnosed and
 fixed. In the meantime, set up a handy key to force a redraw when the
 redraw does not occur. In your `.vimrc`:
 
-```vim 
+```vim
 " <c-l> to clear the highlight, as well as redraw the screen
 noremap <silent> <C-l> :<C-u>nohlsearch<cr><C-l>
 inoremap <silent> <C-l> <C-o>:nohlsearch<cr>
@@ -382,7 +384,7 @@ as Menlo on OS X.) Many more are available to download for free:
 * [Share Tech Mono](http://www.google.com/fonts/specimen/Share+Tech+Mono)
 * [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) (7 weights)
 
-The following collections feature **bold** and *italic* variations, 
+The following collections feature **bold** and *italic* variations,
 to make the most of colorschemes that use them:
 
 * [Anonymous Pro](https://www.google.com/fonts/specimen/Anonymous+Pro) (serif)
@@ -402,7 +404,7 @@ If you find this plugin useful, you may want to check out these others by
 * [vim-colors-pencil][cp] - color scheme for Vim inspired by IA Writer
 * [vim-lexical][lx] - building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect][lc] - lightweight auto-correction for Vim
-* [vim-one][vo] - make use of Vim’s _+clientserver_ capabilities 
+* [vim-one][vo] - make use of Vim’s _+clientserver_ capabilities
 * [vim-pencil][pn] - rethinking Vim as a tool for writers
 * [vim-textobj-quote][qu] - extends Vim to support typographic (‘curly’) quotes
 * [vim-textobj-sentence][ts] - improving on Vim's native sentence motion command
