@@ -47,7 +47,8 @@ if !exists('g:thematic#themes')
 endif
 
 function! <SID>chooseTheme(ArgLead, CmdLine, CursorPos)
-  return sort(keys(g:thematic#themes))
+  return filter(sort(keys(g:thematic#themes)),
+              \ "stridx(v:val,'".a:ArgLead."') == 0")
 endfunction
 
 " Commands
