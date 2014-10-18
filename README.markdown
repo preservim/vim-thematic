@@ -324,15 +324,14 @@ following in OS X Terminal:
 $ defaults write org.vim.MacVim MMNativeFullScreen 0
 ```
 
+(Note: the above command may be necessary to get MacVim's fullscreen working correctly in Yosemite (OS X 10.10).) 
+
 Or, if you prefer that your fullscreen window float against a standard
 background:
 
 ```
 $ defaults write org.vim.MacVim MMNativeFullScreen 1
 ```
-
-Note: this latter command may not work as intended for Yosemite. (Waiting
-to test on official Yosemite release before filing MacVim bug.)
 
 ### Q: How can I apply my own custom highlights?
 
