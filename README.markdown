@@ -324,7 +324,9 @@ following in OS X Terminal:
 $ defaults write org.vim.MacVim MMNativeFullScreen 0
 ```
 
-(Note: the above command may be necessary to get MacVim's fullscreen working correctly in Yosemite (OS X 10.10).) 
+(Note: the above command may or may not work for you in Yosemite (OS X 10.10). 
+For example, I was experiencing 'screen tearing' and had to revert to the setting 
+below.) 
 
 Or, if you prefer that your fullscreen window float against a standard
 background:
