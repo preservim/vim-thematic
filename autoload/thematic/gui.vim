@@ -164,7 +164,12 @@ function! thematic#gui#setFont(th) abort
   let l:fs = thematic#getThemeValue(a:th, 'font-size', -1)
 
   " TODO support list of typefaces with most desired as first in list
-  let l:gf = s:composeGuifontString(l:tf, l:fs)
+  if l:tf == '' || l:fs == '-1'
+    let l:gf = ''
+  else
+    let l:gf = s:composeGuifontString(l:tf, l:fs)
+  endif
+
   if l:gf != ''
     call s:setGuifont(l:gf)
   endif
