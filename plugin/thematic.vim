@@ -88,6 +88,23 @@ else
   let g:thematic#theme_name = ''
 endif
 
+if exists('g:leaderf_loaded')
+  if !exists('g:Lf_Extensions')
+    let g:Lf_Extensions = {}
+  endif
+
+  let g:Lf_Extensions.thematic = {
+        \ 'source': 'leaderf#thematic#source',
+        \ 'accept': 'leaderf#thematic#accept',
+        \ 'highlights_def': {
+        \ 'Lf_hl_thematicTitle': '.*',
+        \ },
+        \ 'highlights_cmd': [
+        \ 'hi link Lf_hl_thematicTitle Title',
+        \ ],
+        \ }
+endif
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 " vim:ts=2:sw=2:sts=2
