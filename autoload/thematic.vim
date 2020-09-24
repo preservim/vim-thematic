@@ -166,11 +166,13 @@ function! thematic#init(mode) abort
   let l:cs = get(l:th, 'colorscheme', l:theme_name)
   try
     execute 'colorscheme ' . l:cs
+    doautoall colorscheme
   catch /E185:/
     " no colorscheme matching the theme name, so fall back to original, if any
     if has_key(g:thematic#original, 'colorscheme')
       let l:cs = g:thematic#original.colorscheme
       execute 'colorscheme ' . l:cs
+      doautoall colorscheme
     endif
   endtry
 
