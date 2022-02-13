@@ -41,14 +41,17 @@ Adobe's _Source Code Pro ExtraLight_ may look great against a black
 background but be unreadable against a white one, so you’ll only pair it
 with an appropriate colorscheme.
 
-## Requirements
-
-May require a recent version of Vim.
-
 ## Installation
 
-Install using Pathogen, Vundle, Neobundle, or your favorite Vim package
-manager.
+You can install using your favorite Vim package manager. (E.g.,
+[Pathogen][pathogen], [Vundle][vundle], or [Plug][plug].) If you are using
+a recent version of vim or neovim, you can also use native package
+support. (See [:help packages][packages].)
+
+[pathogen]: https://github.com/tpope/vim-pathogen
+[vundle]: https://github.com/VundleVim/Vundle.vim
+[plug]: https://github.com/junegunn/vim-plug
+[packages]: https://vimhelp.org/repeat.txt.html#packages
 
 ## Configuration
 
@@ -270,9 +273,9 @@ involved:
 (1) Install a word processing plugin like `pencil` and a suitable
 colorscheme:
 
-* [vim-pencil](https://github.com/reedes/vim-pencil) - to configure
+* [vim-pencil](https://github.com/preservim/vim-pencil) - to configure
   buffers for word processing
-* [vim-colors-pencil](https://github.com/reedes/vim-colors-pencil) - an
+* [vim-colors-pencil](https://github.com/preservim/vim-colors-pencil) - an
   iAWriter-like colorscheme
 
 (2) Edit your `.gvimrc` to disable the tool bar, etc.
@@ -375,38 +378,36 @@ Whether using terminal or GUI-based Vim, a good monospaced font can
 improve your editing experience. You already have a few installed (such
 as Menlo on OS X.) Many more are available to download for free:
 
-* [Cutive Mono](http://www.google.com/fonts/specimen/Cutive+Mono) (serif)
-* [Droid Sans Mono](http://www.google.com/fonts/specimen/Droid+Sans+Mono)
+* [Cutive Mono](https://fonts.google.com/specimen/Cutive+Mono) (serif)
+* [Droid Sans Mono](https://fonts.google.com/fonts/specimen/Droid+Sans+Mono)
 * [Hermit](https://pcaro.es/p/hermit/)
-* [Inconsolata](http://www.google.com/fonts/specimen/Inconsolata) (2 weights)
-* [Linux Libertine Mono O](http://sourceforge.net/projects/linuxlibertine/) (serif)
+* [Inconsolata](https://fonts.google.com/specimen/Inconsolata) (2 weights)
+* [Linux Libertine Mono O](https://sourceforge.net/projects/linuxlibertine/) (serif)
 * [Meslo](https://github.com/andreberg/Meslo-Font)
-* [Oxygen Mono](https://www.google.com/fonts/specimen/Oxygen+Mono)
-* [PT Mono](http://www.google.com/fonts/specimen/PT+Mono)
-* [Share Tech Mono](http://www.google.com/fonts/specimen/Share+Tech+Mono)
-* [Source Code Pro](http://www.google.com/fonts/specimen/Source+Code+Pro) (7 weights)
+* [Oxygen Mono](https://fonts.google.com/specimen/Oxygen+Mono)
+* [PT Mono](https://fonts.google.com/specimen/PT+Mono)
+* [Share Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)
+* [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) (7 weights)
 
 The following collections feature **bold** and *italic* variations,
 to make the most of colorschemes that use them:
 
-* [Anonymous Pro](https://www.google.com/fonts/specimen/Anonymous+Pro) (serif)
+* [Anonymous Pro](https://fonts.google.com/specimen/Anonymous+Pro) (serif)
 * [Courier Prime](http://quoteunquoteapps.com/courierprime/) (serif)
-* [Cousine](http://www.google.com/fonts/specimen/Cousine)
-* [DejaVu Sans Mono](http://dejavu-fonts.org/wiki/Download)
-* [Fantasque Sans Mono](http://openfontlibrary.org/en/font/fantasque-sans-mono)
+* [Cousine](http://fonts.google.com/specimen/Cousine)
+* [Fantasque Sans Mono](https://openfontlibrary.org/en/font/fantasque-sans-mono)
 * [Liberation](https://fedorahosted.org/liberation-fonts/)
-* [Luxi Mono Regular](http://www.fontsquirrel.com/fonts/Luxi-Mono) (serif)
-* [Ubuntu Mono](https://www.google.com/fonts/specimen/Ubuntu+Mono)
+* [Luxi Mono Regular](https://www.fontsquirrel.com/fonts/Luxi-Mono) (serif)
+* [Ubuntu Mono](https://fonts.google.com/specimen/Ubuntu+Mono)
 
 ## See also
 
-If you find this plugin useful, you may want to check out these others by
-[@reedes][re]:
+If you find this plugin useful, you may want to check out these others
+originally by [@reedes][re]:
 
 * [vim-colors-pencil][cp] - color scheme for Vim inspired by IA Writer
 * [vim-lexical][lx] - building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect][lc] - lightweight auto-correction for Vim
-* [vim-one][vo] - make use of Vim’s _+clientserver_ capabilities
 * [vim-pencil][pn] - rethinking Vim as a tool for writers
 * [vim-textobj-quote][qu] - extends Vim to support typographic (‘curly’) quotes
 * [vim-textobj-sentence][ts] - improving on Vim's native sentence motion command
@@ -414,22 +415,22 @@ If you find this plugin useful, you may want to check out these others by
 * [vim-wordy][wo] - uncovering usage problems in writing
 * [vim-wordchipper][wc] - power tool for shredding text in Insert mode
 
-[re]: http://github.com/reedes
-[cp]: http://github.com/reedes/vim-colors-pencil
-[lx]: http://github.com/reedes/vim-lexical
-[lc]: http://github.com/reedes/vim-litecorrect
-[vo]: http://github.com/reedes/vim-one
-[pn]: http://github.com/reedes/vim-pencil
-[ts]: http://github.com/reedes/vim-textobj-sentence
-[qu]: http://github.com/reedes/vim-textobj-quote
-[wh]: http://github.com/reedes/vim-wheel
-[wo]: http://github.com/reedes/vim-wordy
-[wc]: http://github.com/reedes/vim-wordchipper
+[re]: https://github.com/reedes
+[cp]: https://github.com/preservim/vim-colors-pencil
+[lx]: https://github.com/preservim/vim-lexical
+[lc]: https://github.com/preservim/vim-litecorrect
+[pn]: https://github.com/preservim/vim-pencil
+[ts]: https://github.com/preservim/vim-textobj-sentence
+[qu]: https://github.com/preservim/vim-textobj-quote
+[wh]: https://github.com/preservim/vim-wheel
+[wo]: https://github.com/preservim/vim-wordy
+[wc]: https://github.com/preservim/vim-wordchipper
 
 ## Future development
 
 If you’ve spotted a problem or have an idea on improving this plugin,
-please post it to the github project issue page. Pull requests are
-welcome.
+please post it to the [GitHub project issue page][issues].
+
+[issues]: https://github.com/preservim/vim-thematic/issues
 
 <!-- vim: set tw=74 :-->

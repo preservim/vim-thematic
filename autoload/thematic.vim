@@ -1,7 +1,7 @@
 " ============================================================================
 " File:        autoload/thematic.vim
 " Description: autoload script for vim-thematic plugin
-" Maintainer:  Reed Esau <github.com/reedes>
+" Maintainer:  preservim <https://github.com/preservim>
 " Last Change: December 30, 2013
 " License:     The MIT License (MIT)
 " ============================================================================
