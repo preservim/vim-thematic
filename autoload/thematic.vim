@@ -235,7 +235,7 @@ function! thematic#init(mode) abort
 
   " ------ Set GUI-only settings ------
 
-  if l:gui_running
+  if l:gui_running && !has("gui_vimr")
     call thematic#gui#init(l:th)
   endif
 
